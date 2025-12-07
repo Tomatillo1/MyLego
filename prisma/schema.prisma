@@ -1,0 +1,87 @@
+// ==============================
+// Prisma Client Generator
+// ==============================
+generator client {
+  provider = "prisma-client-js"
+  output   = "../../generated/prisma"
+}
+
+// ==============================
+// Database Connection
+// Change this to your database
+// ==============================
+datasource db {
+  provider = "postgresql" // or "mysql", "sqlite", "mongodb"
+}
+
+// ==============================
+// ENUMS
+// ==============================
+enum WishlistPriority {
+  MANDATORY
+  IF_POSSIBLE
+  IF_MONEY
+}
+
+enum PurchaseAvailability {
+  YES
+  NO
+}
+
+// ==============================
+// USER MODEL (Login System)
+// ==============================
+model User {
+  id        String      @id @default(cuid())
+  email     String      @unique
+  password  String
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+
+  collections Collection[]
+  wishlists  Wishlist[]
+}
+
+// ==============================
+// COLLECTION MODEL
+// ==============================
+model Collection {
+  id              String               @id @default(cuid())
+  legoName        String
+  setNumber       String
+  theme           String
+  piecesNumber    Int
+  priceAtStart    Float
+  priceToday      Float
+  stillBuyable    PurchaseAvailability
+
+  userId          String
+  user            User                 @relation(fields: [userId], references: [id])
+
+  createdAt       DateTime             @default(now())
+  updatedAt       DateTime             @updatedAt
+
+  @@unique([setNumber, userId])
+}
+
+// ==============================
+// WISHLIST MODEL
+// ==============================
+model Wishlist {
+  id              String            @id @default(cuid())
+  legoName        String
+  setNumber       String
+  theme           String
+  piecesNumber    Int
+  price           Float
+  retiringAt     DateTime
+  priority        WishlistPriority
+
+  userId          String
+  user            User              @relation(fields: [userId], references: [id])
+
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+
+  @@unique([setNumber, userId])
+}
