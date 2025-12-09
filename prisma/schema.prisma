@@ -2,8 +2,8 @@
 // Prisma Client Generator
 // ==============================
 generator client {
-  provider = "prisma-client-js"
-  output   = "../../generated/prisma"
+  provider = "prisma-client"
+  output   = "../generated"
 }
 
 // ==============================
@@ -32,56 +32,67 @@ enum PurchaseAvailability {
 // USER MODEL (Login System)
 // ==============================
 model User {
-  id        String      @id @default(cuid())
-  email     String      @unique
+  id        String   @id @default(cuid())
+  email     String   @unique
   password  String
-  createdAt DateTime    @default(now())
-  updatedAt DateTime    @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  collections Collection[]
-  wishlists  Wishlist[]
+  // collections Collection[]
+  // wishlists  Wishlist[]
+}
+
+model Lego {
+  id                 String  @id @default(uuid())
+  name               String
+  setNumber          String
+  theme              String
+  pieces             Int
+  startingPrice      Int
+  currentPrice       Int
+  removedFromStoreOn String? // or DateTime? if it's meant to be a date
 }
 
 // ==============================
 // COLLECTION MODEL
 // ==============================
-model Collection {
-  id              String               @id @default(cuid())
-  legoName        String
-  setNumber       String
-  theme           String
-  piecesNumber    Int
-  priceAtStart    Float
-  priceToday      Float
-  stillBuyable    PurchaseAvailability
+// model Collection {
+//   id              String               @id @default(cuid())
+//   legoName        String
+//   setNumber       String
+//   theme           String
+//   piecesNumber    Int
+//   priceAtStart    Float
+//   priceToday      Float
+//   stillBuyable    PurchaseAvailability
 
-  userId          String
-  user            User                 @relation(fields: [userId], references: [id])
+//   userId          String
+//   user            User                 @relation(fields: [userId], references: [id])
 
-  createdAt       DateTime             @default(now())
-  updatedAt       DateTime             @updatedAt
+//   createdAt       DateTime             @default(now())
+//   updatedAt       DateTime             @updatedAt
 
-  @@unique([setNumber, userId])
-}
+//   @@unique([setNumber, userId])
+// }
 
-// ==============================
-// WISHLIST MODEL
-// ==============================
-model Wishlist {
-  id              String            @id @default(cuid())
-  legoName        String
-  setNumber       String
-  theme           String
-  piecesNumber    Int
-  price           Float
-  retiringAt     DateTime
-  priority        WishlistPriority
+// // ==============================
+// // WISHLIST MODEL
+// // ==============================
+// model Wishlist {
+//   id              String            @id @default(cuid())
+//   legoName        String
+//   setNumber       String
+//   theme           String
+//   piecesNumber    Int
+//   price           Float
+//   retiringAt     DateTime
+//   priority        WishlistPriority
 
-  userId          String
-  user            User              @relation(fields: [userId], references: [id])
+//   userId          String
+//   user            User              @relation(fields: [userId], references: [id])
 
-  createdAt       DateTime          @default(now())
-  updatedAt       DateTime          @updatedAt
+//   createdAt       DateTime          @default(now())
+//   updatedAt       DateTime          @updatedAt
 
-  @@unique([setNumber, userId])
-}
+//   @@unique([setNumber, userId])
+// }
