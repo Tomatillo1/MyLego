@@ -40,6 +40,7 @@ export type LegoSumAggregateOutputType = {
 
 export type LegoMinAggregateOutputType = {
   id: string | null
+  imageUrl: string | null
   name: string | null
   setNumber: string | null
   theme: string | null
@@ -51,6 +52,7 @@ export type LegoMinAggregateOutputType = {
 
 export type LegoMaxAggregateOutputType = {
   id: string | null
+  imageUrl: string | null
   name: string | null
   setNumber: string | null
   theme: string | null
@@ -62,6 +64,7 @@ export type LegoMaxAggregateOutputType = {
 
 export type LegoCountAggregateOutputType = {
   id: number
+  imageUrl: number
   name: number
   setNumber: number
   theme: number
@@ -87,6 +90,7 @@ export type LegoSumAggregateInputType = {
 
 export type LegoMinAggregateInputType = {
   id?: true
+  imageUrl?: true
   name?: true
   setNumber?: true
   theme?: true
@@ -98,6 +102,7 @@ export type LegoMinAggregateInputType = {
 
 export type LegoMaxAggregateInputType = {
   id?: true
+  imageUrl?: true
   name?: true
   setNumber?: true
   theme?: true
@@ -109,6 +114,7 @@ export type LegoMaxAggregateInputType = {
 
 export type LegoCountAggregateInputType = {
   id?: true
+  imageUrl?: true
   name?: true
   setNumber?: true
   theme?: true
@@ -207,6 +213,7 @@ export type LegoGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 
 export type LegoGroupByOutputType = {
   id: string
+  imageUrl: string
   name: string
   setNumber: string
   theme: string
@@ -241,6 +248,7 @@ export type LegoWhereInput = {
   OR?: Prisma.LegoWhereInput[]
   NOT?: Prisma.LegoWhereInput | Prisma.LegoWhereInput[]
   id?: Prisma.StringFilter<"Lego"> | string
+  imageUrl?: Prisma.StringFilter<"Lego"> | string
   name?: Prisma.StringFilter<"Lego"> | string
   setNumber?: Prisma.StringFilter<"Lego"> | string
   theme?: Prisma.StringFilter<"Lego"> | string
@@ -248,10 +256,13 @@ export type LegoWhereInput = {
   startingPrice?: Prisma.IntFilter<"Lego"> | number
   currentPrice?: Prisma.IntFilter<"Lego"> | number
   removedFromStoreOn?: Prisma.StringNullableFilter<"Lego"> | string | null
+  wishlistItems?: Prisma.WishlistItemListRelationFilter
+  collectors?: Prisma.UserListRelationFilter
 }
 
 export type LegoOrderByWithRelationInput = {
   id?: Prisma.SortOrder
+  imageUrl?: Prisma.SortOrder
   name?: Prisma.SortOrder
   setNumber?: Prisma.SortOrder
   theme?: Prisma.SortOrder
@@ -259,6 +270,8 @@ export type LegoOrderByWithRelationInput = {
   startingPrice?: Prisma.SortOrder
   currentPrice?: Prisma.SortOrder
   removedFromStoreOn?: Prisma.SortOrderInput | Prisma.SortOrder
+  wishlistItems?: Prisma.WishlistItemOrderByRelationAggregateInput
+  collectors?: Prisma.UserOrderByRelationAggregateInput
 }
 
 export type LegoWhereUniqueInput = Prisma.AtLeast<{
@@ -266,6 +279,7 @@ export type LegoWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.LegoWhereInput | Prisma.LegoWhereInput[]
   OR?: Prisma.LegoWhereInput[]
   NOT?: Prisma.LegoWhereInput | Prisma.LegoWhereInput[]
+  imageUrl?: Prisma.StringFilter<"Lego"> | string
   name?: Prisma.StringFilter<"Lego"> | string
   setNumber?: Prisma.StringFilter<"Lego"> | string
   theme?: Prisma.StringFilter<"Lego"> | string
@@ -273,10 +287,13 @@ export type LegoWhereUniqueInput = Prisma.AtLeast<{
   startingPrice?: Prisma.IntFilter<"Lego"> | number
   currentPrice?: Prisma.IntFilter<"Lego"> | number
   removedFromStoreOn?: Prisma.StringNullableFilter<"Lego"> | string | null
+  wishlistItems?: Prisma.WishlistItemListRelationFilter
+  collectors?: Prisma.UserListRelationFilter
 }, "id">
 
 export type LegoOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
+  imageUrl?: Prisma.SortOrder
   name?: Prisma.SortOrder
   setNumber?: Prisma.SortOrder
   theme?: Prisma.SortOrder
@@ -296,6 +313,7 @@ export type LegoScalarWhereWithAggregatesInput = {
   OR?: Prisma.LegoScalarWhereWithAggregatesInput[]
   NOT?: Prisma.LegoScalarWhereWithAggregatesInput | Prisma.LegoScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Lego"> | string
+  imageUrl?: Prisma.StringWithAggregatesFilter<"Lego"> | string
   name?: Prisma.StringWithAggregatesFilter<"Lego"> | string
   setNumber?: Prisma.StringWithAggregatesFilter<"Lego"> | string
   theme?: Prisma.StringWithAggregatesFilter<"Lego"> | string
@@ -307,6 +325,7 @@ export type LegoScalarWhereWithAggregatesInput = {
 
 export type LegoCreateInput = {
   id?: string
+  imageUrl?: string
   name: string
   setNumber: string
   theme: string
@@ -314,10 +333,13 @@ export type LegoCreateInput = {
   startingPrice: number
   currentPrice: number
   removedFromStoreOn?: string | null
+  wishlistItems?: Prisma.WishlistItemCreateNestedManyWithoutLegoInput
+  collectors?: Prisma.UserCreateNestedManyWithoutCollectionInput
 }
 
 export type LegoUncheckedCreateInput = {
   id?: string
+  imageUrl?: string
   name: string
   setNumber: string
   theme: string
@@ -325,10 +347,13 @@ export type LegoUncheckedCreateInput = {
   startingPrice: number
   currentPrice: number
   removedFromStoreOn?: string | null
+  wishlistItems?: Prisma.WishlistItemUncheckedCreateNestedManyWithoutLegoInput
+  collectors?: Prisma.UserUncheckedCreateNestedManyWithoutCollectionInput
 }
 
 export type LegoUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   setNumber?: Prisma.StringFieldUpdateOperationsInput | string
   theme?: Prisma.StringFieldUpdateOperationsInput | string
@@ -336,10 +361,13 @@ export type LegoUpdateInput = {
   startingPrice?: Prisma.IntFieldUpdateOperationsInput | number
   currentPrice?: Prisma.IntFieldUpdateOperationsInput | number
   removedFromStoreOn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  wishlistItems?: Prisma.WishlistItemUpdateManyWithoutLegoNestedInput
+  collectors?: Prisma.UserUpdateManyWithoutCollectionNestedInput
 }
 
 export type LegoUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   setNumber?: Prisma.StringFieldUpdateOperationsInput | string
   theme?: Prisma.StringFieldUpdateOperationsInput | string
@@ -347,10 +375,13 @@ export type LegoUncheckedUpdateInput = {
   startingPrice?: Prisma.IntFieldUpdateOperationsInput | number
   currentPrice?: Prisma.IntFieldUpdateOperationsInput | number
   removedFromStoreOn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  wishlistItems?: Prisma.WishlistItemUncheckedUpdateManyWithoutLegoNestedInput
+  collectors?: Prisma.UserUncheckedUpdateManyWithoutCollectionNestedInput
 }
 
 export type LegoCreateManyInput = {
   id?: string
+  imageUrl?: string
   name: string
   setNumber: string
   theme: string
@@ -362,6 +393,7 @@ export type LegoCreateManyInput = {
 
 export type LegoUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   setNumber?: Prisma.StringFieldUpdateOperationsInput | string
   theme?: Prisma.StringFieldUpdateOperationsInput | string
@@ -373,6 +405,7 @@ export type LegoUpdateManyMutationInput = {
 
 export type LegoUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   setNumber?: Prisma.StringFieldUpdateOperationsInput | string
   theme?: Prisma.StringFieldUpdateOperationsInput | string
@@ -382,8 +415,19 @@ export type LegoUncheckedUpdateManyInput = {
   removedFromStoreOn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
+export type LegoListRelationFilter = {
+  every?: Prisma.LegoWhereInput
+  some?: Prisma.LegoWhereInput
+  none?: Prisma.LegoWhereInput
+}
+
+export type LegoOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
+}
+
 export type LegoCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  imageUrl?: Prisma.SortOrder
   name?: Prisma.SortOrder
   setNumber?: Prisma.SortOrder
   theme?: Prisma.SortOrder
@@ -401,6 +445,7 @@ export type LegoAvgOrderByAggregateInput = {
 
 export type LegoMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  imageUrl?: Prisma.SortOrder
   name?: Prisma.SortOrder
   setNumber?: Prisma.SortOrder
   theme?: Prisma.SortOrder
@@ -412,6 +457,7 @@ export type LegoMaxOrderByAggregateInput = {
 
 export type LegoMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  imageUrl?: Prisma.SortOrder
   name?: Prisma.SortOrder
   setNumber?: Prisma.SortOrder
   theme?: Prisma.SortOrder
@@ -427,6 +473,49 @@ export type LegoSumOrderByAggregateInput = {
   currentPrice?: Prisma.SortOrder
 }
 
+export type LegoScalarRelationFilter = {
+  is?: Prisma.LegoWhereInput
+  isNot?: Prisma.LegoWhereInput
+}
+
+export type LegoCreateNestedManyWithoutCollectorsInput = {
+  create?: Prisma.XOR<Prisma.LegoCreateWithoutCollectorsInput, Prisma.LegoUncheckedCreateWithoutCollectorsInput> | Prisma.LegoCreateWithoutCollectorsInput[] | Prisma.LegoUncheckedCreateWithoutCollectorsInput[]
+  connectOrCreate?: Prisma.LegoCreateOrConnectWithoutCollectorsInput | Prisma.LegoCreateOrConnectWithoutCollectorsInput[]
+  connect?: Prisma.LegoWhereUniqueInput | Prisma.LegoWhereUniqueInput[]
+}
+
+export type LegoUncheckedCreateNestedManyWithoutCollectorsInput = {
+  create?: Prisma.XOR<Prisma.LegoCreateWithoutCollectorsInput, Prisma.LegoUncheckedCreateWithoutCollectorsInput> | Prisma.LegoCreateWithoutCollectorsInput[] | Prisma.LegoUncheckedCreateWithoutCollectorsInput[]
+  connectOrCreate?: Prisma.LegoCreateOrConnectWithoutCollectorsInput | Prisma.LegoCreateOrConnectWithoutCollectorsInput[]
+  connect?: Prisma.LegoWhereUniqueInput | Prisma.LegoWhereUniqueInput[]
+}
+
+export type LegoUpdateManyWithoutCollectorsNestedInput = {
+  create?: Prisma.XOR<Prisma.LegoCreateWithoutCollectorsInput, Prisma.LegoUncheckedCreateWithoutCollectorsInput> | Prisma.LegoCreateWithoutCollectorsInput[] | Prisma.LegoUncheckedCreateWithoutCollectorsInput[]
+  connectOrCreate?: Prisma.LegoCreateOrConnectWithoutCollectorsInput | Prisma.LegoCreateOrConnectWithoutCollectorsInput[]
+  upsert?: Prisma.LegoUpsertWithWhereUniqueWithoutCollectorsInput | Prisma.LegoUpsertWithWhereUniqueWithoutCollectorsInput[]
+  set?: Prisma.LegoWhereUniqueInput | Prisma.LegoWhereUniqueInput[]
+  disconnect?: Prisma.LegoWhereUniqueInput | Prisma.LegoWhereUniqueInput[]
+  delete?: Prisma.LegoWhereUniqueInput | Prisma.LegoWhereUniqueInput[]
+  connect?: Prisma.LegoWhereUniqueInput | Prisma.LegoWhereUniqueInput[]
+  update?: Prisma.LegoUpdateWithWhereUniqueWithoutCollectorsInput | Prisma.LegoUpdateWithWhereUniqueWithoutCollectorsInput[]
+  updateMany?: Prisma.LegoUpdateManyWithWhereWithoutCollectorsInput | Prisma.LegoUpdateManyWithWhereWithoutCollectorsInput[]
+  deleteMany?: Prisma.LegoScalarWhereInput | Prisma.LegoScalarWhereInput[]
+}
+
+export type LegoUncheckedUpdateManyWithoutCollectorsNestedInput = {
+  create?: Prisma.XOR<Prisma.LegoCreateWithoutCollectorsInput, Prisma.LegoUncheckedCreateWithoutCollectorsInput> | Prisma.LegoCreateWithoutCollectorsInput[] | Prisma.LegoUncheckedCreateWithoutCollectorsInput[]
+  connectOrCreate?: Prisma.LegoCreateOrConnectWithoutCollectorsInput | Prisma.LegoCreateOrConnectWithoutCollectorsInput[]
+  upsert?: Prisma.LegoUpsertWithWhereUniqueWithoutCollectorsInput | Prisma.LegoUpsertWithWhereUniqueWithoutCollectorsInput[]
+  set?: Prisma.LegoWhereUniqueInput | Prisma.LegoWhereUniqueInput[]
+  disconnect?: Prisma.LegoWhereUniqueInput | Prisma.LegoWhereUniqueInput[]
+  delete?: Prisma.LegoWhereUniqueInput | Prisma.LegoWhereUniqueInput[]
+  connect?: Prisma.LegoWhereUniqueInput | Prisma.LegoWhereUniqueInput[]
+  update?: Prisma.LegoUpdateWithWhereUniqueWithoutCollectorsInput | Prisma.LegoUpdateWithWhereUniqueWithoutCollectorsInput[]
+  updateMany?: Prisma.LegoUpdateManyWithWhereWithoutCollectorsInput | Prisma.LegoUpdateManyWithWhereWithoutCollectorsInput[]
+  deleteMany?: Prisma.LegoScalarWhereInput | Prisma.LegoScalarWhereInput[]
+}
+
 export type IntFieldUpdateOperationsInput = {
   set?: number
   increment?: number
@@ -439,10 +528,231 @@ export type NullableStringFieldUpdateOperationsInput = {
   set?: string | null
 }
 
+export type LegoCreateNestedOneWithoutWishlistItemsInput = {
+  create?: Prisma.XOR<Prisma.LegoCreateWithoutWishlistItemsInput, Prisma.LegoUncheckedCreateWithoutWishlistItemsInput>
+  connectOrCreate?: Prisma.LegoCreateOrConnectWithoutWishlistItemsInput
+  connect?: Prisma.LegoWhereUniqueInput
+}
+
+export type LegoUpdateOneRequiredWithoutWishlistItemsNestedInput = {
+  create?: Prisma.XOR<Prisma.LegoCreateWithoutWishlistItemsInput, Prisma.LegoUncheckedCreateWithoutWishlistItemsInput>
+  connectOrCreate?: Prisma.LegoCreateOrConnectWithoutWishlistItemsInput
+  upsert?: Prisma.LegoUpsertWithoutWishlistItemsInput
+  connect?: Prisma.LegoWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.LegoUpdateToOneWithWhereWithoutWishlistItemsInput, Prisma.LegoUpdateWithoutWishlistItemsInput>, Prisma.LegoUncheckedUpdateWithoutWishlistItemsInput>
+}
+
+export type LegoCreateWithoutCollectorsInput = {
+  id?: string
+  imageUrl?: string
+  name: string
+  setNumber: string
+  theme: string
+  pieces: number
+  startingPrice: number
+  currentPrice: number
+  removedFromStoreOn?: string | null
+  wishlistItems?: Prisma.WishlistItemCreateNestedManyWithoutLegoInput
+}
+
+export type LegoUncheckedCreateWithoutCollectorsInput = {
+  id?: string
+  imageUrl?: string
+  name: string
+  setNumber: string
+  theme: string
+  pieces: number
+  startingPrice: number
+  currentPrice: number
+  removedFromStoreOn?: string | null
+  wishlistItems?: Prisma.WishlistItemUncheckedCreateNestedManyWithoutLegoInput
+}
+
+export type LegoCreateOrConnectWithoutCollectorsInput = {
+  where: Prisma.LegoWhereUniqueInput
+  create: Prisma.XOR<Prisma.LegoCreateWithoutCollectorsInput, Prisma.LegoUncheckedCreateWithoutCollectorsInput>
+}
+
+export type LegoUpsertWithWhereUniqueWithoutCollectorsInput = {
+  where: Prisma.LegoWhereUniqueInput
+  update: Prisma.XOR<Prisma.LegoUpdateWithoutCollectorsInput, Prisma.LegoUncheckedUpdateWithoutCollectorsInput>
+  create: Prisma.XOR<Prisma.LegoCreateWithoutCollectorsInput, Prisma.LegoUncheckedCreateWithoutCollectorsInput>
+}
+
+export type LegoUpdateWithWhereUniqueWithoutCollectorsInput = {
+  where: Prisma.LegoWhereUniqueInput
+  data: Prisma.XOR<Prisma.LegoUpdateWithoutCollectorsInput, Prisma.LegoUncheckedUpdateWithoutCollectorsInput>
+}
+
+export type LegoUpdateManyWithWhereWithoutCollectorsInput = {
+  where: Prisma.LegoScalarWhereInput
+  data: Prisma.XOR<Prisma.LegoUpdateManyMutationInput, Prisma.LegoUncheckedUpdateManyWithoutCollectorsInput>
+}
+
+export type LegoScalarWhereInput = {
+  AND?: Prisma.LegoScalarWhereInput | Prisma.LegoScalarWhereInput[]
+  OR?: Prisma.LegoScalarWhereInput[]
+  NOT?: Prisma.LegoScalarWhereInput | Prisma.LegoScalarWhereInput[]
+  id?: Prisma.StringFilter<"Lego"> | string
+  imageUrl?: Prisma.StringFilter<"Lego"> | string
+  name?: Prisma.StringFilter<"Lego"> | string
+  setNumber?: Prisma.StringFilter<"Lego"> | string
+  theme?: Prisma.StringFilter<"Lego"> | string
+  pieces?: Prisma.IntFilter<"Lego"> | number
+  startingPrice?: Prisma.IntFilter<"Lego"> | number
+  currentPrice?: Prisma.IntFilter<"Lego"> | number
+  removedFromStoreOn?: Prisma.StringNullableFilter<"Lego"> | string | null
+}
+
+export type LegoCreateWithoutWishlistItemsInput = {
+  id?: string
+  imageUrl?: string
+  name: string
+  setNumber: string
+  theme: string
+  pieces: number
+  startingPrice: number
+  currentPrice: number
+  removedFromStoreOn?: string | null
+  collectors?: Prisma.UserCreateNestedManyWithoutCollectionInput
+}
+
+export type LegoUncheckedCreateWithoutWishlistItemsInput = {
+  id?: string
+  imageUrl?: string
+  name: string
+  setNumber: string
+  theme: string
+  pieces: number
+  startingPrice: number
+  currentPrice: number
+  removedFromStoreOn?: string | null
+  collectors?: Prisma.UserUncheckedCreateNestedManyWithoutCollectionInput
+}
+
+export type LegoCreateOrConnectWithoutWishlistItemsInput = {
+  where: Prisma.LegoWhereUniqueInput
+  create: Prisma.XOR<Prisma.LegoCreateWithoutWishlistItemsInput, Prisma.LegoUncheckedCreateWithoutWishlistItemsInput>
+}
+
+export type LegoUpsertWithoutWishlistItemsInput = {
+  update: Prisma.XOR<Prisma.LegoUpdateWithoutWishlistItemsInput, Prisma.LegoUncheckedUpdateWithoutWishlistItemsInput>
+  create: Prisma.XOR<Prisma.LegoCreateWithoutWishlistItemsInput, Prisma.LegoUncheckedCreateWithoutWishlistItemsInput>
+  where?: Prisma.LegoWhereInput
+}
+
+export type LegoUpdateToOneWithWhereWithoutWishlistItemsInput = {
+  where?: Prisma.LegoWhereInput
+  data: Prisma.XOR<Prisma.LegoUpdateWithoutWishlistItemsInput, Prisma.LegoUncheckedUpdateWithoutWishlistItemsInput>
+}
+
+export type LegoUpdateWithoutWishlistItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  setNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  theme?: Prisma.StringFieldUpdateOperationsInput | string
+  pieces?: Prisma.IntFieldUpdateOperationsInput | number
+  startingPrice?: Prisma.IntFieldUpdateOperationsInput | number
+  currentPrice?: Prisma.IntFieldUpdateOperationsInput | number
+  removedFromStoreOn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  collectors?: Prisma.UserUpdateManyWithoutCollectionNestedInput
+}
+
+export type LegoUncheckedUpdateWithoutWishlistItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  setNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  theme?: Prisma.StringFieldUpdateOperationsInput | string
+  pieces?: Prisma.IntFieldUpdateOperationsInput | number
+  startingPrice?: Prisma.IntFieldUpdateOperationsInput | number
+  currentPrice?: Prisma.IntFieldUpdateOperationsInput | number
+  removedFromStoreOn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  collectors?: Prisma.UserUncheckedUpdateManyWithoutCollectionNestedInput
+}
+
+export type LegoUpdateWithoutCollectorsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  setNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  theme?: Prisma.StringFieldUpdateOperationsInput | string
+  pieces?: Prisma.IntFieldUpdateOperationsInput | number
+  startingPrice?: Prisma.IntFieldUpdateOperationsInput | number
+  currentPrice?: Prisma.IntFieldUpdateOperationsInput | number
+  removedFromStoreOn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  wishlistItems?: Prisma.WishlistItemUpdateManyWithoutLegoNestedInput
+}
+
+export type LegoUncheckedUpdateWithoutCollectorsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  setNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  theme?: Prisma.StringFieldUpdateOperationsInput | string
+  pieces?: Prisma.IntFieldUpdateOperationsInput | number
+  startingPrice?: Prisma.IntFieldUpdateOperationsInput | number
+  currentPrice?: Prisma.IntFieldUpdateOperationsInput | number
+  removedFromStoreOn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  wishlistItems?: Prisma.WishlistItemUncheckedUpdateManyWithoutLegoNestedInput
+}
+
+export type LegoUncheckedUpdateManyWithoutCollectorsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  setNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  theme?: Prisma.StringFieldUpdateOperationsInput | string
+  pieces?: Prisma.IntFieldUpdateOperationsInput | number
+  startingPrice?: Prisma.IntFieldUpdateOperationsInput | number
+  currentPrice?: Prisma.IntFieldUpdateOperationsInput | number
+  removedFromStoreOn?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+
+/**
+ * Count Type LegoCountOutputType
+ */
+
+export type LegoCountOutputType = {
+  wishlistItems: number
+  collectors: number
+}
+
+export type LegoCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  wishlistItems?: boolean | LegoCountOutputTypeCountWishlistItemsArgs
+  collectors?: boolean | LegoCountOutputTypeCountCollectorsArgs
+}
+
+/**
+ * LegoCountOutputType without action
+ */
+export type LegoCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the LegoCountOutputType
+   */
+  select?: Prisma.LegoCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * LegoCountOutputType without action
+ */
+export type LegoCountOutputTypeCountWishlistItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.WishlistItemWhereInput
+}
+
+/**
+ * LegoCountOutputType without action
+ */
+export type LegoCountOutputTypeCountCollectorsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.UserWhereInput
+}
 
 
 export type LegoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  imageUrl?: boolean
   name?: boolean
   setNumber?: boolean
   theme?: boolean
@@ -450,10 +760,14 @@ export type LegoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   startingPrice?: boolean
   currentPrice?: boolean
   removedFromStoreOn?: boolean
+  wishlistItems?: boolean | Prisma.Lego$wishlistItemsArgs<ExtArgs>
+  collectors?: boolean | Prisma.Lego$collectorsArgs<ExtArgs>
+  _count?: boolean | Prisma.LegoCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["lego"]>
 
 export type LegoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  imageUrl?: boolean
   name?: boolean
   setNumber?: boolean
   theme?: boolean
@@ -465,6 +779,7 @@ export type LegoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
 
 export type LegoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  imageUrl?: boolean
   name?: boolean
   setNumber?: boolean
   theme?: boolean
@@ -476,6 +791,7 @@ export type LegoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
 
 export type LegoSelectScalar = {
   id?: boolean
+  imageUrl?: boolean
   name?: boolean
   setNumber?: boolean
   theme?: boolean
@@ -485,13 +801,24 @@ export type LegoSelectScalar = {
   removedFromStoreOn?: boolean
 }
 
-export type LegoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "setNumber" | "theme" | "pieces" | "startingPrice" | "currentPrice" | "removedFromStoreOn", ExtArgs["result"]["lego"]>
+export type LegoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "imageUrl" | "name" | "setNumber" | "theme" | "pieces" | "startingPrice" | "currentPrice" | "removedFromStoreOn", ExtArgs["result"]["lego"]>
+export type LegoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  wishlistItems?: boolean | Prisma.Lego$wishlistItemsArgs<ExtArgs>
+  collectors?: boolean | Prisma.Lego$collectorsArgs<ExtArgs>
+  _count?: boolean | Prisma.LegoCountOutputTypeDefaultArgs<ExtArgs>
+}
+export type LegoIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type LegoIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
 
 export type $LegoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Lego"
-  objects: {}
+  objects: {
+    wishlistItems: Prisma.$WishlistItemPayload<ExtArgs>[]
+    collectors: Prisma.$UserPayload<ExtArgs>[]
+  }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
+    imageUrl: string
     name: string
     setNumber: string
     theme: string
@@ -893,6 +1220,8 @@ readonly fields: LegoFieldRefs;
  */
 export interface Prisma__LegoClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  wishlistItems<T extends Prisma.Lego$wishlistItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Lego$wishlistItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WishlistItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  collectors<T extends Prisma.Lego$collectorsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Lego$collectorsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -923,6 +1252,7 @@ export interface Prisma__LegoClient<T, Null = never, ExtArgs extends runtime.Typ
  */
 export interface LegoFieldRefs {
   readonly id: Prisma.FieldRef<"Lego", 'String'>
+  readonly imageUrl: Prisma.FieldRef<"Lego", 'String'>
   readonly name: Prisma.FieldRef<"Lego", 'String'>
   readonly setNumber: Prisma.FieldRef<"Lego", 'String'>
   readonly theme: Prisma.FieldRef<"Lego", 'String'>
@@ -947,6 +1277,10 @@ export type LegoFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.Internal
    */
   omit?: Prisma.LegoOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LegoInclude<ExtArgs> | null
+  /**
    * Filter, which Lego to fetch.
    */
   where: Prisma.LegoWhereUniqueInput
@@ -965,6 +1299,10 @@ export type LegoFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.I
    */
   omit?: Prisma.LegoOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LegoInclude<ExtArgs> | null
+  /**
    * Filter, which Lego to fetch.
    */
   where: Prisma.LegoWhereUniqueInput
@@ -982,6 +1320,10 @@ export type LegoFindFirstArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    * Omit specific fields from the Lego
    */
   omit?: Prisma.LegoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LegoInclude<ExtArgs> | null
   /**
    * Filter, which Lego to fetch.
    */
@@ -1031,6 +1373,10 @@ export type LegoFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.In
    */
   omit?: Prisma.LegoOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LegoInclude<ExtArgs> | null
+  /**
    * Filter, which Lego to fetch.
    */
   where?: Prisma.LegoWhereInput
@@ -1079,6 +1425,10 @@ export type LegoFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
    */
   omit?: Prisma.LegoOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LegoInclude<ExtArgs> | null
+  /**
    * Filter, which Legos to fetch.
    */
   where?: Prisma.LegoWhereInput
@@ -1121,6 +1471,10 @@ export type LegoCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    * Omit specific fields from the Lego
    */
   omit?: Prisma.LegoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LegoInclude<ExtArgs> | null
   /**
    * The data needed to create a Lego.
    */
@@ -1169,6 +1523,10 @@ export type LegoUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    * Omit specific fields from the Lego
    */
   omit?: Prisma.LegoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LegoInclude<ExtArgs> | null
   /**
    * The data needed to update a Lego.
    */
@@ -1236,6 +1594,10 @@ export type LegoUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    */
   omit?: Prisma.LegoOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LegoInclude<ExtArgs> | null
+  /**
    * The filter to search for the Lego to update in case it exists.
    */
   where: Prisma.LegoWhereUniqueInput
@@ -1262,6 +1624,10 @@ export type LegoDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs
    */
   omit?: Prisma.LegoOmit<ExtArgs> | null
   /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LegoInclude<ExtArgs> | null
+  /**
    * Filter which Lego to delete.
    */
   where: Prisma.LegoWhereUniqueInput
@@ -1282,6 +1648,54 @@ export type LegoDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
+ * Lego.wishlistItems
+ */
+export type Lego$wishlistItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the WishlistItem
+   */
+  select?: Prisma.WishlistItemSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the WishlistItem
+   */
+  omit?: Prisma.WishlistItemOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WishlistItemInclude<ExtArgs> | null
+  where?: Prisma.WishlistItemWhereInput
+  orderBy?: Prisma.WishlistItemOrderByWithRelationInput | Prisma.WishlistItemOrderByWithRelationInput[]
+  cursor?: Prisma.WishlistItemWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.WishlistItemScalarFieldEnum | Prisma.WishlistItemScalarFieldEnum[]
+}
+
+/**
+ * Lego.collectors
+ */
+export type Lego$collectorsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the User
+   */
+  select?: Prisma.UserSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the User
+   */
+  omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  where?: Prisma.UserWhereInput
+  orderBy?: Prisma.UserOrderByWithRelationInput | Prisma.UserOrderByWithRelationInput[]
+  cursor?: Prisma.UserWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.UserScalarFieldEnum | Prisma.UserScalarFieldEnum[]
+}
+
+/**
  * Lego without action
  */
 export type LegoDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1293,4 +1707,8 @@ export type LegoDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
    * Omit specific fields from the Lego
    */
   omit?: Prisma.LegoOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LegoInclude<ExtArgs> | null
 }

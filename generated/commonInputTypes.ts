@@ -137,6 +137,23 @@ export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedStringNullableFilter<$PrismaModel>
 }
 
+export type EnumWishlistPriorityFilter<$PrismaModel = never> = {
+  equals?: $Enums.WishlistPriority | Prisma.EnumWishlistPriorityFieldRefInput<$PrismaModel>
+  in?: $Enums.WishlistPriority[] | Prisma.ListEnumWishlistPriorityFieldRefInput<$PrismaModel>
+  notIn?: $Enums.WishlistPriority[] | Prisma.ListEnumWishlistPriorityFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumWishlistPriorityFilter<$PrismaModel> | $Enums.WishlistPriority
+}
+
+export type EnumWishlistPriorityWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.WishlistPriority | Prisma.EnumWishlistPriorityFieldRefInput<$PrismaModel>
+  in?: $Enums.WishlistPriority[] | Prisma.ListEnumWishlistPriorityFieldRefInput<$PrismaModel>
+  notIn?: $Enums.WishlistPriority[] | Prisma.ListEnumWishlistPriorityFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumWishlistPriorityWithAggregatesFilter<$PrismaModel> | $Enums.WishlistPriority
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumWishlistPriorityFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumWishlistPriorityFilter<$PrismaModel>
+}
+
 export type NestedStringFilter<$PrismaModel = never> = {
   equals?: string | Prisma.StringFieldRefInput<$PrismaModel>
   in?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
@@ -271,6 +288,23 @@ export type NestedIntNullableFilter<$PrismaModel = never> = {
   gt?: number | Prisma.IntFieldRefInput<$PrismaModel>
   gte?: number | Prisma.IntFieldRefInput<$PrismaModel>
   not?: Prisma.NestedIntNullableFilter<$PrismaModel> | number | null
+}
+
+export type NestedEnumWishlistPriorityFilter<$PrismaModel = never> = {
+  equals?: $Enums.WishlistPriority | Prisma.EnumWishlistPriorityFieldRefInput<$PrismaModel>
+  in?: $Enums.WishlistPriority[] | Prisma.ListEnumWishlistPriorityFieldRefInput<$PrismaModel>
+  notIn?: $Enums.WishlistPriority[] | Prisma.ListEnumWishlistPriorityFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumWishlistPriorityFilter<$PrismaModel> | $Enums.WishlistPriority
+}
+
+export type NestedEnumWishlistPriorityWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.WishlistPriority | Prisma.EnumWishlistPriorityFieldRefInput<$PrismaModel>
+  in?: $Enums.WishlistPriority[] | Prisma.ListEnumWishlistPriorityFieldRefInput<$PrismaModel>
+  notIn?: $Enums.WishlistPriority[] | Prisma.ListEnumWishlistPriorityFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumWishlistPriorityWithAggregatesFilter<$PrismaModel> | $Enums.WishlistPriority
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumWishlistPriorityFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumWishlistPriorityFilter<$PrismaModel>
 }
 
 

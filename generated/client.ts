@@ -49,3 +49,8 @@ export type User = Prisma.UserModel
  * 
  */
 export type Lego = Prisma.LegoModel
+/**
+ * Model WishlistItem
+ * 
+ */
+export type WishlistItem = Prisma.WishlistItemModel

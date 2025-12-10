@@ -10,4 +10,5 @@
  */
 export type * from './models/User.ts'
 export type * from './models/Lego.ts'
+export type * from './models/WishlistItem.ts'
 export type * from './commonInputTypes.ts'

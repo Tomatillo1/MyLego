@@ -16,11 +16,3 @@ export const WishlistPriority = {
 } as const
 
 export type WishlistPriority = (typeof WishlistPriority)[keyof typeof WishlistPriority]
-
-
-export const PurchaseAvailability = {
-  YES: 'YES',
-  NO: 'NO'
-} as const
-
-export type PurchaseAvailability = (typeof PurchaseAvailability)[keyof typeof PurchaseAvailability]

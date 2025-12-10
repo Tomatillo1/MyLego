@@ -8,10 +8,9 @@ generator client {
 
 // ==============================
 // Database Connection
-// Change this to your database
 // ==============================
 datasource db {
-  provider = "postgresql" // or "mysql", "sqlite", "mongodb"
+  provider = "postgresql"
 }
 
 // ==============================
@@ -23,13 +22,8 @@ enum WishlistPriority {
   IF_MONEY
 }
 
-enum PurchaseAvailability {
-  YES
-  NO
-}
-
 // ==============================
-// USER MODEL (Login System)
+// USER MODEL
 // ==============================
 model User {
   id        String   @id @default(cuid())
@@ -38,61 +32,41 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  // collections Collection[]
-  // wishlists  Wishlist[]
+  wishlistItems WishlistItem[]
+  collection    Lego[]         @relation("UserCollection")
 }
 
+// ==============================
+// LEGO MODEL
+// ==============================
 model Lego {
   id                 String  @id @default(uuid())
+  imageUrl           String  @default("https://assets.lego.com/logos/v4.5.0/brand-lego.svg")
   name               String
   setNumber          String
   theme              String
   pieces             Int
   startingPrice      Int
   currentPrice       Int
-  removedFromStoreOn String? // or DateTime? if it's meant to be a date
+  removedFromStoreOn String?
+
+  wishlistItems WishlistItem[]
+  collectors    User[]         @relation("UserCollection")
 }
 
 // ==============================
-// COLLECTION MODEL
+// WISHLIST MODEL
 // ==============================
-// model Collection {
-//   id              String               @id @default(cuid())
-//   legoName        String
-//   setNumber       String
-//   theme           String
-//   piecesNumber    Int
-//   priceAtStart    Float
-//   priceToday      Float
-//   stillBuyable    PurchaseAvailability
+model WishlistItem {
+  id       String           @id @default(cuid())
+  userId   String
+  legoId   String
+  priority WishlistPriority @default(MANDATORY)
 
-//   userId          String
-//   user            User                 @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lego Lego @relation(fields: [legoId], references: [id], onDelete: Cascade)
 
-//   createdAt       DateTime             @default(now())
-//   updatedAt       DateTime             @updatedAt
+  createdAt DateTime @default(now())
 
-//   @@unique([setNumber, userId])
-// }
-
-// // ==============================
-// // WISHLIST MODEL
-// // ==============================
-// model Wishlist {
-//   id              String            @id @default(cuid())
-//   legoName        String
-//   setNumber       String
-//   theme           String
-//   piecesNumber    Int
-//   price           Float
-//   retiringAt     DateTime
-//   priority        WishlistPriority
-
-//   userId          String
-//   user            User              @relation(fields: [userId], references: [id])
-
-//   createdAt       DateTime          @default(now())
-//   updatedAt       DateTime          @updatedAt
-
-//   @@unique([setNumber, userId])
-// }
+  @@unique([userId, legoId]) // ensures no duplicate wishlist entries
+}

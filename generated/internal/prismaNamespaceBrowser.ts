@@ -52,7 +52,8 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   User: 'User',
-  Lego: 'Lego'
+  Lego: 'Lego',
+  WishlistItem: 'WishlistItem'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -84,6 +85,7 @@ export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof User
 
 export const LegoScalarFieldEnum = {
   id: 'id',
+  imageUrl: 'imageUrl',
   name: 'name',
   setNumber: 'setNumber',
   theme: 'theme',
@@ -94,6 +96,17 @@ export const LegoScalarFieldEnum = {
 } as const
 
 export type LegoScalarFieldEnum = (typeof LegoScalarFieldEnum)[keyof typeof LegoScalarFieldEnum]
+
+
+export const WishlistItemScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  legoId: 'legoId',
+  priority: 'priority',
+  createdAt: 'createdAt'
+} as const
+
+export type WishlistItemScalarFieldEnum = (typeof WishlistItemScalarFieldEnum)[keyof typeof WishlistItemScalarFieldEnum]
 
 
 export const SortOrder = {
