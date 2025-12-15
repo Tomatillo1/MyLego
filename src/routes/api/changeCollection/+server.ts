@@ -16,7 +16,6 @@ export const POST = async ({ request }) => {
 				}
 			}
 		});
-		console.log('added', user);
 	} else {
 		await prisma.user.update({
 			where: { id: userId },
