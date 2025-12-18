@@ -3,10 +3,6 @@ import { prisma } from '$lib/server/prisma';
 
 export const POST = async ({ request }) => {
 	const { legoId, userId } = await request.json();
-	const user = await prisma.user.findUnique({
-		where: { id: userId },
-		include: { collection: true }
-	});
 	await prisma.user.update({
 		where: { id: userId },
 		data: {
@@ -15,7 +11,5 @@ export const POST = async ({ request }) => {
 			}
 		}
 	});
-	console.log('deleted', user);
-
 	return json({ success: true });
 };
