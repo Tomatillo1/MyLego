@@ -25,7 +25,7 @@ export const actions: Actions = {
 		const { email, password } = parsed.data;
 
 		const key = `login:${getClientAddress()}:${email}`;
-		if (!rateLimit(key, 8, 15 * 60 * 1000)) {
+		if (!(await rateLimit(key, 8, 15 * 60 * 1000))) {
 			return fail(429, {
 				email,
 				errors: { form: 'Trop de tentatives. Réessaie dans quelques minutes.' } as Record<
@@ -41,7 +41,7 @@ export const actions: Actions = {
 				errors: { form: 'Email ou mot de passe incorrect.' } as Record<string, string>
 			});
 
-		resetRateLimit(key);
+		await resetRateLimit(key);
 		await createSession(userId, cookies);
 		redirect(303, safeNext(url.searchParams.get('next')));
 	}

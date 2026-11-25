@@ -14,7 +14,7 @@ export const actions: Actions = {
 		const email = cookies.get(RESET_EMAIL_COOKIE);
 		if (!email) redirect(303, '/forgot-password');
 		// Le délai de 45 s et le plafond horaire sont appliqués côté serveur dans le service
-		if (rateLimit(`forgot:${getClientAddress()}`, 10, 60 * 60 * 1000))
+		if (await rateLimit(`forgot:${getClientAddress()}`, 10, 60 * 60 * 1000))
 			await requestPasswordReset(email, url.origin);
 		return { resent: true };
 	}

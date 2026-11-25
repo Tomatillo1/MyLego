@@ -2,6 +2,7 @@ import { error, json } from '@sveltejs/kit';
 import { env } from '$env/dynamic/private';
 import { isCronAuthorized } from '$lib/server/cron';
 import { prisma } from '$lib/server/prisma';
+import { purgeExpiredRateLimits } from '$lib/server/rate-limit';
 import type { RequestHandler } from './$types';
 
 /**
@@ -15,5 +16,7 @@ export const GET: RequestHandler = async ({ request }) => {
 	}
 	// Vraie lecture sur une table (pas un simple SELECT 1) pour compter comme activité.
 	const sets = await prisma.lego.count();
-	return json({ ok: true, sets, at: new Date().toISOString() });
+	// Ménage : compteurs de tentatives expirés
+	const purged = await purgeExpiredRateLimits();
+	return json({ ok: true, sets, purged, at: new Date().toISOString() });
 };

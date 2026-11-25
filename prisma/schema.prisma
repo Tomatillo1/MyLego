@@ -131,3 +131,15 @@ model WishlistItem {
 
   @@unique([userId, legoId]) // ensures no duplicate wishlist entries
 }
+
+// ==============================
+// LIMITATION DES TENTATIVES (partagée entre toutes les instances Vercel)
+// Fenêtre fixe : `count` tentatives jusqu'à `resetAt`, puis remise à zéro.
+// ==============================
+model RateLimit {
+  key     String   @id
+  count   Int
+  resetAt DateTime
+
+  @@index([resetAt])
+}

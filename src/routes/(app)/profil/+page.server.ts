@@ -30,7 +30,7 @@ export const actions: Actions = {
 		const parsed = profileSchema.safeParse(raw);
 		if (!parsed.success)
 			return fail(400, { scope: 'update', values, errors: fieldErrors(parsed.error) });
-		if (!rateLimit(`profile:${user.id}`, 10, 15 * 60 * 1000)) {
+		if (!(await rateLimit(`profile:${user.id}`, 10, 15 * 60 * 1000))) {
 			return fail(429, {
 				scope: 'update',
 				values,
@@ -47,7 +47,7 @@ export const actions: Actions = {
 
 	avatar: async ({ request, locals }) => {
 		const user = locals.user!;
-		if (!rateLimit(`avatar:${user.id}`, 10, 60 * 60 * 1000))
+		if (!(await rateLimit(`avatar:${user.id}`, 10, 60 * 60 * 1000)))
 			return fail(429, {
 				scope: 'avatar',
 				message: 'Trop de changements d’avatar. Réessaie plus tard.'
@@ -77,7 +77,7 @@ export const actions: Actions = {
 		const user = locals.user!;
 		const parsed = deleteAccountSchema.safeParse(formToObject(await request.formData()));
 		if (!parsed.success) return fail(400, { scope: 'delete', message: 'Mot de passe requis' });
-		if (!rateLimit(`delete:${user.id}`, 5, 15 * 60 * 1000))
+		if (!(await rateLimit(`delete:${user.id}`, 5, 15 * 60 * 1000)))
 			return fail(429, { scope: 'delete', message: 'Trop de tentatives.' });
 		try {
 			await deleteAccount(user.id, parsed.data.password);

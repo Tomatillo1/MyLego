@@ -69,3 +69,8 @@ export type CollectionItem = Prisma.CollectionItemModel
  * 
  */
 export type WishlistItem = Prisma.WishlistItemModel
+/**
+ * Model RateLimit
+ * 
+ */
+export type RateLimit = Prisma.RateLimitModel

@@ -8,7 +8,8 @@
  * - pages et données (__data.json) : réseau d'abord, repli sur la dernière
  *   version en cache → affichage « hors ligne — dernière synchronisation » ;
  * - les mutations (POST) ne sont jamais mises en cache ;
- * - pages d'authentification et réinitialisation jamais mises en cache.
+ * - pages d'authentification et réinitialisation jamais mises en cache ;
+ * - page jamais visitée (ou non cachable) hors ligne → /offline.html.
  */
 import { build, files, version } from '$service-worker';
 
@@ -16,6 +17,7 @@ const sw = self as unknown as ServiceWorkerGlobalScope;
 const SHELL = `shell-${version}`;
 const PAGES = 'pages-v1';
 const ASSETS = [...build, ...files];
+const OFFLINE_PAGE = '/offline.html';
 const NO_CACHE = /^\/(login|register|forgot-password|reset-password|logout|profil\/avatar)/;
 
 sw.addEventListener('install', (event) => {
@@ -52,9 +54,14 @@ sw.addEventListener('fetch', (event) => {
 		event.respondWith(caches.match(url.pathname).then((r) => r ?? fetch(req)));
 		return;
 	}
-	if (NO_CACHE.test(url.pathname)) return;
+	const isNavigation = req.mode === 'navigate';
+	if (NO_CACHE.test(url.pathname)) {
+		// Jamais en cache, mais une vraie page « hors ligne » plutôt que l'erreur du navigateur
+		if (isNavigation) event.respondWith(fetch(req).catch(() => offlinePage()));
+		return;
+	}
 
-	const isPage = req.mode === 'navigate' || url.pathname.endsWith('/__data.json');
+	const isPage = isNavigation || url.pathname.endsWith('/__data.json');
 	if (!isPage) return;
 
 	event.respondWith(
@@ -67,15 +74,22 @@ sw.addEventListener('fetch', (event) => {
 			} catch {
 				const cached = await cache.match(req, { ignoreSearch: false });
 				if (cached) return cached;
-				const fallback = req.mode === 'navigate' ? await cache.match('/catalogue') : undefined;
-				return (
-					fallback ??
-					new Response('Hors ligne', {
-						status: 503,
-						headers: { 'Content-Type': 'text/plain; charset=utf-8' }
-					})
-				);
+				if (isNavigation) return offlinePage();
+				return new Response('Hors ligne', {
+					status: 503,
+					headers: { 'Content-Type': 'text/plain; charset=utf-8' }
+				});
 			}
 		})()
 	);
 });
+
+async function offlinePage(): Promise<Response> {
+	return (
+		(await caches.match(OFFLINE_PAGE)) ??
+		new Response('Hors ligne', {
+			status: 503,
+			headers: { 'Content-Type': 'text/plain; charset=utf-8' }
+		})
+	);
+}

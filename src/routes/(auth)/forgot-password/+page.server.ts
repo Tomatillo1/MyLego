@@ -14,7 +14,7 @@ export const actions: Actions = {
 		const { email } = parsed.data;
 
 		// Même réponse que le compte existe ou non ; limites par IP et par compte (dans le service)
-		if (rateLimit(`forgot:${getClientAddress()}`, 10, 60 * 60 * 1000)) {
+		if (await rateLimit(`forgot:${getClientAddress()}`, 10, 60 * 60 * 1000)) {
 			await requestPasswordReset(email, url.origin);
 		}
 		cookies.set(RESET_EMAIL_COOKIE, email, {

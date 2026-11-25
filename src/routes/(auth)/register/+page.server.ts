@@ -9,7 +9,7 @@ export const actions: Actions = {
 	default: async ({ request, cookies, getClientAddress }) => {
 		const raw = formToObject(await request.formData());
 		const values = { username: raw.username ?? '', email: raw.email ?? '' };
-		if (!rateLimit(`register:${getClientAddress()}`, 10, 60 * 60 * 1000)) {
+		if (!(await rateLimit(`register:${getClientAddress()}`, 10, 60 * 60 * 1000))) {
 			return fail(429, {
 				values,
 				errors: { form: 'Trop de créations de compte. Réessaie plus tard.' } as Record<
