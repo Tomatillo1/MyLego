@@ -1,6 +1,5 @@
 <script lang="ts">
 	import './layout.css';
-	import favicon from '$lib/assets/favicon.svg';
 	import IconSprite from '$lib/components/IconSprite.svelte';
 	import { beforeNavigate } from '$app/navigation';
 
@@ -16,10 +15,6 @@
 		location.assign(nav.to.url.href);
 	});
 </script>
-
-<svelte:head>
-	<link rel="icon" href={favicon} />
-</svelte:head>
 
 <IconSprite />
 {@render children()}

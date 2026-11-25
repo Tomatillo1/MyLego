@@ -16,7 +16,11 @@ import { build, files, version } from '$service-worker';
 const sw = self as unknown as ServiceWorkerGlobalScope;
 const SHELL = `shell-${version}`;
 const PAGES = 'pages-v1';
-const ASSETS = [...build, ...files];
+// Les écrans de démarrage iOS (un seul utile par appareil) ne sont pas pré-téléchargés
+const ASSETS = [
+	...build,
+	...files.filter((f) => !f.startsWith('/splash/') && !f.endsWith('.DS_Store'))
+];
 const OFFLINE_PAGE = '/offline.html';
 const NO_CACHE = /^\/(login|register|forgot-password|reset-password|logout|profil\/avatar)/;
 

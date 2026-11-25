@@ -33,56 +33,13 @@
 			main {
 				max-width: 320px;
 			}
-			.art {
-				position: relative;
-				width: 168px;
-				height: 168px;
-				margin: 0 auto 22px;
-				border-radius: 50%;
-				background: radial-gradient(circle at 50% 38%, #272c3a 0%, #12141b 78%);
-			}
-			.brick {
-				position: absolute;
-				left: 50%;
-				height: 26px;
-				border-radius: 5px;
-				box-shadow: inset 0 -5px 0 rgba(0, 0, 0, 0.22);
-			}
-			.brick::before,
-			.brick::after {
-				content: '';
-				position: absolute;
-				top: -7px;
-				width: 14px;
-				height: 8px;
-				border-radius: 3px 3px 0 0;
-				background: inherit;
-			}
-			.brick::before {
-				left: 10px;
-			}
-			.brick::after {
-				right: 10px;
-			}
-			.b1 {
-				top: 102px;
-				width: 84px;
-				margin-left: -42px;
-				background: #f2b544;
-			}
-			.b2 {
-				top: 70px;
-				width: 64px;
-				margin-left: -36px;
-				background: #e5484d;
-				transform: rotate(-4deg);
-			}
-			.b3 {
-				top: 40px;
-				width: 46px;
-				margin-left: -30px;
-				background: #3b82f6;
-				transform: rotate(-9deg);
+			.logo {
+				display: block;
+				width: 112px;
+				height: 112px;
+				margin: 0 auto 24px;
+				border-radius: 26px;
+				box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
 			}
 			h1 {
 				font:
@@ -120,9 +77,7 @@
 	</head>
 	<body>
 		<main>
-			<div class="art" aria-hidden="true">
-				<span class="brick b3"></span><span class="brick b2"></span><span class="brick b1"></span>
-			</div>
+			<img class="logo" src="/icons/icon-192.png" alt="myLego" width="112" height="112" />
 			<h1>Pas disponible hors ligne</h1>
 			<p>
 				Cette page n’a pas encore été ouverte avec du réseau. Reconnecte-toi pour l’afficher, ou
