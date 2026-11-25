@@ -30,6 +30,7 @@ export type WishlistItemMinAggregateOutputType = {
   legoId: string | null
   priority: $Enums.WishlistPriority | null
   createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type WishlistItemMaxAggregateOutputType = {
@@ -38,6 +39,7 @@ export type WishlistItemMaxAggregateOutputType = {
   legoId: string | null
   priority: $Enums.WishlistPriority | null
   createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type WishlistItemCountAggregateOutputType = {
@@ -46,6 +48,7 @@ export type WishlistItemCountAggregateOutputType = {
   legoId: number
   priority: number
   createdAt: number
+  updatedAt: number
   _all: number
 }
 
@@ -56,6 +59,7 @@ export type WishlistItemMinAggregateInputType = {
   legoId?: true
   priority?: true
   createdAt?: true
+  updatedAt?: true
 }
 
 export type WishlistItemMaxAggregateInputType = {
@@ -64,6 +68,7 @@ export type WishlistItemMaxAggregateInputType = {
   legoId?: true
   priority?: true
   createdAt?: true
+  updatedAt?: true
 }
 
 export type WishlistItemCountAggregateInputType = {
@@ -72,6 +77,7 @@ export type WishlistItemCountAggregateInputType = {
   legoId?: true
   priority?: true
   createdAt?: true
+  updatedAt?: true
   _all?: true
 }
 
@@ -153,6 +159,7 @@ export type WishlistItemGroupByOutputType = {
   legoId: string
   priority: $Enums.WishlistPriority
   createdAt: Date
+  updatedAt: Date
   _count: WishlistItemCountAggregateOutputType | null
   _min: WishlistItemMinAggregateOutputType | null
   _max: WishlistItemMaxAggregateOutputType | null
@@ -182,6 +189,7 @@ export type WishlistItemWhereInput = {
   legoId?: Prisma.StringFilter<"WishlistItem"> | string
   priority?: Prisma.EnumWishlistPriorityFilter<"WishlistItem"> | $Enums.WishlistPriority
   createdAt?: Prisma.DateTimeFilter<"WishlistItem"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"WishlistItem"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   lego?: Prisma.XOR<Prisma.LegoScalarRelationFilter, Prisma.LegoWhereInput>
 }
@@ -192,6 +200,7 @@ export type WishlistItemOrderByWithRelationInput = {
   legoId?: Prisma.SortOrder
   priority?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
   lego?: Prisma.LegoOrderByWithRelationInput
 }
@@ -206,6 +215,7 @@ export type WishlistItemWhereUniqueInput = Prisma.AtLeast<{
   legoId?: Prisma.StringFilter<"WishlistItem"> | string
   priority?: Prisma.EnumWishlistPriorityFilter<"WishlistItem"> | $Enums.WishlistPriority
   createdAt?: Prisma.DateTimeFilter<"WishlistItem"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"WishlistItem"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   lego?: Prisma.XOR<Prisma.LegoScalarRelationFilter, Prisma.LegoWhereInput>
 }, "id" | "userId_legoId">
@@ -216,6 +226,7 @@ export type WishlistItemOrderByWithAggregationInput = {
   legoId?: Prisma.SortOrder
   priority?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   _count?: Prisma.WishlistItemCountOrderByAggregateInput
   _max?: Prisma.WishlistItemMaxOrderByAggregateInput
   _min?: Prisma.WishlistItemMinOrderByAggregateInput
@@ -230,12 +241,14 @@ export type WishlistItemScalarWhereWithAggregatesInput = {
   legoId?: Prisma.StringWithAggregatesFilter<"WishlistItem"> | string
   priority?: Prisma.EnumWishlistPriorityWithAggregatesFilter<"WishlistItem"> | $Enums.WishlistPriority
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"WishlistItem"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"WishlistItem"> | Date | string
 }
 
 export type WishlistItemCreateInput = {
   id?: string
   priority?: $Enums.WishlistPriority
   createdAt?: Date | string
+  updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutWishlistItemsInput
   lego: Prisma.LegoCreateNestedOneWithoutWishlistItemsInput
 }
@@ -246,12 +259,14 @@ export type WishlistItemUncheckedCreateInput = {
   legoId: string
   priority?: $Enums.WishlistPriority
   createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type WishlistItemUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   priority?: Prisma.EnumWishlistPriorityFieldUpdateOperationsInput | $Enums.WishlistPriority
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutWishlistItemsNestedInput
   lego?: Prisma.LegoUpdateOneRequiredWithoutWishlistItemsNestedInput
 }
@@ -262,6 +277,7 @@ export type WishlistItemUncheckedUpdateInput = {
   legoId?: Prisma.StringFieldUpdateOperationsInput | string
   priority?: Prisma.EnumWishlistPriorityFieldUpdateOperationsInput | $Enums.WishlistPriority
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type WishlistItemCreateManyInput = {
@@ -270,12 +286,14 @@ export type WishlistItemCreateManyInput = {
   legoId: string
   priority?: $Enums.WishlistPriority
   createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type WishlistItemUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   priority?: Prisma.EnumWishlistPriorityFieldUpdateOperationsInput | $Enums.WishlistPriority
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type WishlistItemUncheckedUpdateManyInput = {
@@ -284,6 +302,7 @@ export type WishlistItemUncheckedUpdateManyInput = {
   legoId?: Prisma.StringFieldUpdateOperationsInput | string
   priority?: Prisma.EnumWishlistPriorityFieldUpdateOperationsInput | $Enums.WishlistPriority
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type WishlistItemListRelationFilter = {
@@ -307,6 +326,7 @@ export type WishlistItemCountOrderByAggregateInput = {
   legoId?: Prisma.SortOrder
   priority?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type WishlistItemMaxOrderByAggregateInput = {
@@ -315,6 +335,7 @@ export type WishlistItemMaxOrderByAggregateInput = {
   legoId?: Prisma.SortOrder
   priority?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type WishlistItemMinOrderByAggregateInput = {
@@ -323,6 +344,7 @@ export type WishlistItemMinOrderByAggregateInput = {
   legoId?: Prisma.SortOrder
   priority?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type WishlistItemCreateNestedManyWithoutUserInput = {
@@ -417,6 +439,7 @@ export type WishlistItemCreateWithoutUserInput = {
   id?: string
   priority?: $Enums.WishlistPriority
   createdAt?: Date | string
+  updatedAt?: Date | string
   lego: Prisma.LegoCreateNestedOneWithoutWishlistItemsInput
 }
 
@@ -425,6 +448,7 @@ export type WishlistItemUncheckedCreateWithoutUserInput = {
   legoId: string
   priority?: $Enums.WishlistPriority
   createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type WishlistItemCreateOrConnectWithoutUserInput = {
@@ -462,12 +486,14 @@ export type WishlistItemScalarWhereInput = {
   legoId?: Prisma.StringFilter<"WishlistItem"> | string
   priority?: Prisma.EnumWishlistPriorityFilter<"WishlistItem"> | $Enums.WishlistPriority
   createdAt?: Prisma.DateTimeFilter<"WishlistItem"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"WishlistItem"> | Date | string
 }
 
 export type WishlistItemCreateWithoutLegoInput = {
   id?: string
   priority?: $Enums.WishlistPriority
   createdAt?: Date | string
+  updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutWishlistItemsInput
 }
 
@@ -476,6 +502,7 @@ export type WishlistItemUncheckedCreateWithoutLegoInput = {
   userId: string
   priority?: $Enums.WishlistPriority
   createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type WishlistItemCreateOrConnectWithoutLegoInput = {
@@ -509,12 +536,14 @@ export type WishlistItemCreateManyUserInput = {
   legoId: string
   priority?: $Enums.WishlistPriority
   createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type WishlistItemUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   priority?: Prisma.EnumWishlistPriorityFieldUpdateOperationsInput | $Enums.WishlistPriority
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   lego?: Prisma.LegoUpdateOneRequiredWithoutWishlistItemsNestedInput
 }
 
@@ -523,6 +552,7 @@ export type WishlistItemUncheckedUpdateWithoutUserInput = {
   legoId?: Prisma.StringFieldUpdateOperationsInput | string
   priority?: Prisma.EnumWishlistPriorityFieldUpdateOperationsInput | $Enums.WishlistPriority
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type WishlistItemUncheckedUpdateManyWithoutUserInput = {
@@ -530,6 +560,7 @@ export type WishlistItemUncheckedUpdateManyWithoutUserInput = {
   legoId?: Prisma.StringFieldUpdateOperationsInput | string
   priority?: Prisma.EnumWishlistPriorityFieldUpdateOperationsInput | $Enums.WishlistPriority
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type WishlistItemCreateManyLegoInput = {
@@ -537,12 +568,14 @@ export type WishlistItemCreateManyLegoInput = {
   userId: string
   priority?: $Enums.WishlistPriority
   createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type WishlistItemUpdateWithoutLegoInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   priority?: Prisma.EnumWishlistPriorityFieldUpdateOperationsInput | $Enums.WishlistPriority
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutWishlistItemsNestedInput
 }
 
@@ -551,6 +584,7 @@ export type WishlistItemUncheckedUpdateWithoutLegoInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   priority?: Prisma.EnumWishlistPriorityFieldUpdateOperationsInput | $Enums.WishlistPriority
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type WishlistItemUncheckedUpdateManyWithoutLegoInput = {
@@ -558,6 +592,7 @@ export type WishlistItemUncheckedUpdateManyWithoutLegoInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   priority?: Prisma.EnumWishlistPriorityFieldUpdateOperationsInput | $Enums.WishlistPriority
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -568,6 +603,7 @@ export type WishlistItemSelect<ExtArgs extends runtime.Types.Extensions.Internal
   legoId?: boolean
   priority?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   lego?: boolean | Prisma.LegoDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["wishlistItem"]>
@@ -578,6 +614,7 @@ export type WishlistItemSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   legoId?: boolean
   priority?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   lego?: boolean | Prisma.LegoDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["wishlistItem"]>
@@ -588,6 +625,7 @@ export type WishlistItemSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   legoId?: boolean
   priority?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   lego?: boolean | Prisma.LegoDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["wishlistItem"]>
@@ -598,9 +636,10 @@ export type WishlistItemSelectScalar = {
   legoId?: boolean
   priority?: boolean
   createdAt?: boolean
+  updatedAt?: boolean
 }
 
-export type WishlistItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "legoId" | "priority" | "createdAt", ExtArgs["result"]["wishlistItem"]>
+export type WishlistItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "legoId" | "priority" | "createdAt" | "updatedAt", ExtArgs["result"]["wishlistItem"]>
 export type WishlistItemInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   lego?: boolean | Prisma.LegoDefaultArgs<ExtArgs>
@@ -626,6 +665,7 @@ export type $WishlistItemPayload<ExtArgs extends runtime.Types.Extensions.Intern
     legoId: string
     priority: $Enums.WishlistPriority
     createdAt: Date
+    updatedAt: Date
   }, ExtArgs["result"]["wishlistItem"]>
   composites: {}
 }
@@ -1056,6 +1096,7 @@ export interface WishlistItemFieldRefs {
   readonly legoId: Prisma.FieldRef<"WishlistItem", 'String'>
   readonly priority: Prisma.FieldRef<"WishlistItem", 'WishlistPriority'>
   readonly createdAt: Prisma.FieldRef<"WishlistItem", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"WishlistItem", 'DateTime'>
 }
     
 

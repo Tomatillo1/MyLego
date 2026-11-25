@@ -16,6 +16,7 @@ datasource db {
 // ==============================
 // ENUMS
 // ==============================
+// Libellés affichés : MANDATORY = Haute, IF_POSSIBLE = Moyenne, IF_MONEY = Basse
 enum WishlistPriority {
   MANDATORY
   IF_POSSIBLE
@@ -23,39 +24,98 @@ enum WishlistPriority {
 }
 
 // ==============================
-// USER MODEL
+// USER
 // ==============================
 model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  password  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id              String    @id @default(cuid())
+  email           String    @unique
+  /// Unicité insensible à la casse garantie aussi par l'index SQL "User_username_lower_key"
+  username        String    @unique
+  passwordHash    String
+  avatar          Bytes?
+  avatarMime      String?
+  avatarUpdatedAt DateTime?
+  termsAcceptedAt DateTime?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
 
-  wishlistItems WishlistItem[]
-  collection    Lego[]         @relation("UserCollection")
+  sessions        Session[]
+  resetTokens     PasswordResetToken[]
+  wishlistItems   WishlistItem[]
+  collectionItems CollectionItem[]
 }
 
 // ==============================
-// LEGO MODEL
+// SESSION (id = sha256 du jeton du cookie)
+// ==============================
+model Session {
+  id        String   @id
+  userId    String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+// ==============================
+// RÉINITIALISATION DU MOT DE PASSE (jeton à usage unique, haché)
+// ==============================
+model PasswordResetToken {
+  id        String    @id @default(cuid())
+  userId    String
+  tokenHash String    @unique
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+}
+
+// ==============================
+// LEGO
 // ==============================
 model Lego {
-  id                 String  @id @default(uuid())
-  imageUrl           String  @default("https://assets.lego.com/logos/v4.5.0/brand-lego.svg")
+  id                 String    @id @default(uuid())
+  imageUrl           String    @default("https://assets.lego.com/logos/v4.5.0/brand-lego.svg")
   name               String
-  setNumber          String
+  setNumber          String    @unique
   theme              String
   pieces             Int
-  startingPrice      Int
-  currentPrice       Int
-  removedFromStoreOn String?
+  /// Prix en centimes d'euro
+  priceCents         Int
+  year               Int?
+  minAge             Int?
+  /// Date de retrait (prévue ou passée) du catalogue LEGO. Retiré = date passée.
+  removedFromStoreOn DateTime?
 
-  wishlistItems WishlistItem[]
-  collectors    User[]         @relation("UserCollection")
+  wishlistItems   WishlistItem[]
+  collectionItems CollectionItem[]
+
+  @@index([theme])
+  @@index([name])
 }
 
 // ==============================
-// WISHLIST MODEL
+// COLLECTION
+// ==============================
+model CollectionItem {
+  userId  String
+  legoId  String
+  addedAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lego Lego @relation(fields: [legoId], references: [id], onDelete: Cascade)
+
+  @@id([userId, legoId])
+  @@index([legoId])
+}
+
+// ==============================
+// WISHLIST
 // ==============================
 model WishlistItem {
   id       String           @id @default(cuid())
@@ -67,6 +127,7 @@ model WishlistItem {
   lego Lego @relation(fields: [legoId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
 
   @@unique([userId, legoId]) // ensures no duplicate wishlist entries
 }

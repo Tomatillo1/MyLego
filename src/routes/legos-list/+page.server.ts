@@ -1,12 +1,7 @@
-import { prisma } from '$lib/server/prisma';
+import { redirect } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 
-export const load: PageServerLoad = async ({ depends }) => {
-	const legos = await prisma.lego.findMany();
-	const user = await prisma.user.findUnique({
-		where: { id: 'dff89fe8-baac-421e-b5f3-75b9584264b1' },
-		include: { collection: true, wishlistItems: true }
-	});
-	depends('app:legosList');
-	return { user, legos };
+/** Ancienne URL conservée : redirection permanente vers le catalogue. */
+export const load: PageServerLoad = () => {
+	redirect(301, '/catalogue');
 };

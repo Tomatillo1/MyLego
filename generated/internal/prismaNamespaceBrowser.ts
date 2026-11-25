@@ -52,7 +52,10 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   User: 'User',
+  Session: 'Session',
+  PasswordResetToken: 'PasswordResetToken',
   Lego: 'Lego',
+  CollectionItem: 'CollectionItem',
   WishlistItem: 'WishlistItem'
 } as const
 
@@ -75,12 +78,39 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 export const UserScalarFieldEnum = {
   id: 'id',
   email: 'email',
-  password: 'password',
+  username: 'username',
+  passwordHash: 'passwordHash',
+  avatar: 'avatar',
+  avatarMime: 'avatarMime',
+  avatarUpdatedAt: 'avatarUpdatedAt',
+  termsAcceptedAt: 'termsAcceptedAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+export const SessionScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  expiresAt: 'expiresAt',
+  createdAt: 'createdAt'
+} as const
+
+export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeof SessionScalarFieldEnum]
+
+
+export const PasswordResetTokenScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  tokenHash: 'tokenHash',
+  expiresAt: 'expiresAt',
+  usedAt: 'usedAt',
+  createdAt: 'createdAt'
+} as const
+
+export type PasswordResetTokenScalarFieldEnum = (typeof PasswordResetTokenScalarFieldEnum)[keyof typeof PasswordResetTokenScalarFieldEnum]
 
 
 export const LegoScalarFieldEnum = {
@@ -90,12 +120,22 @@ export const LegoScalarFieldEnum = {
   setNumber: 'setNumber',
   theme: 'theme',
   pieces: 'pieces',
-  startingPrice: 'startingPrice',
-  currentPrice: 'currentPrice',
+  priceCents: 'priceCents',
+  year: 'year',
+  minAge: 'minAge',
   removedFromStoreOn: 'removedFromStoreOn'
 } as const
 
 export type LegoScalarFieldEnum = (typeof LegoScalarFieldEnum)[keyof typeof LegoScalarFieldEnum]
+
+
+export const CollectionItemScalarFieldEnum = {
+  userId: 'userId',
+  legoId: 'legoId',
+  addedAt: 'addedAt'
+} as const
+
+export type CollectionItemScalarFieldEnum = (typeof CollectionItemScalarFieldEnum)[keyof typeof CollectionItemScalarFieldEnum]
 
 
 export const WishlistItemScalarFieldEnum = {
@@ -103,7 +143,8 @@ export const WishlistItemScalarFieldEnum = {
   userId: 'userId',
   legoId: 'legoId',
   priority: 'priority',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type WishlistItemScalarFieldEnum = (typeof WishlistItemScalarFieldEnum)[keyof typeof WishlistItemScalarFieldEnum]

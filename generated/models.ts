@@ -9,6 +9,9 @@
  * 🟢 You can import this file directly.
  */
 export type * from './models/User.ts'
+export type * from './models/Session.ts'
+export type * from './models/PasswordResetToken.ts'
 export type * from './models/Lego.ts'
+export type * from './models/CollectionItem.ts'
 export type * from './models/WishlistItem.ts'
 export type * from './commonInputTypes.ts'

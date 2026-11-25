@@ -27,7 +27,12 @@ export type AggregateUser = {
 export type UserMinAggregateOutputType = {
   id: string | null
   email: string | null
-  password: string | null
+  username: string | null
+  passwordHash: string | null
+  avatar: runtime.Bytes | null
+  avatarMime: string | null
+  avatarUpdatedAt: Date | null
+  termsAcceptedAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -35,7 +40,12 @@ export type UserMinAggregateOutputType = {
 export type UserMaxAggregateOutputType = {
   id: string | null
   email: string | null
-  password: string | null
+  username: string | null
+  passwordHash: string | null
+  avatar: runtime.Bytes | null
+  avatarMime: string | null
+  avatarUpdatedAt: Date | null
+  termsAcceptedAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -43,7 +53,12 @@ export type UserMaxAggregateOutputType = {
 export type UserCountAggregateOutputType = {
   id: number
   email: number
-  password: number
+  username: number
+  passwordHash: number
+  avatar: number
+  avatarMime: number
+  avatarUpdatedAt: number
+  termsAcceptedAt: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -53,7 +68,12 @@ export type UserCountAggregateOutputType = {
 export type UserMinAggregateInputType = {
   id?: true
   email?: true
-  password?: true
+  username?: true
+  passwordHash?: true
+  avatar?: true
+  avatarMime?: true
+  avatarUpdatedAt?: true
+  termsAcceptedAt?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -61,7 +81,12 @@ export type UserMinAggregateInputType = {
 export type UserMaxAggregateInputType = {
   id?: true
   email?: true
-  password?: true
+  username?: true
+  passwordHash?: true
+  avatar?: true
+  avatarMime?: true
+  avatarUpdatedAt?: true
+  termsAcceptedAt?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -69,7 +94,12 @@ export type UserMaxAggregateInputType = {
 export type UserCountAggregateInputType = {
   id?: true
   email?: true
-  password?: true
+  username?: true
+  passwordHash?: true
+  avatar?: true
+  avatarMime?: true
+  avatarUpdatedAt?: true
+  termsAcceptedAt?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -150,7 +180,12 @@ export type UserGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 export type UserGroupByOutputType = {
   id: string
   email: string
-  password: string
+  username: string
+  passwordHash: string
+  avatar: runtime.Bytes | null
+  avatarMime: string | null
+  avatarUpdatedAt: Date | null
+  termsAcceptedAt: Date | null
   createdAt: Date
   updatedAt: Date
   _count: UserCountAggregateOutputType | null
@@ -179,40 +214,66 @@ export type UserWhereInput = {
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   id?: Prisma.StringFilter<"User"> | string
   email?: Prisma.StringFilter<"User"> | string
-  password?: Prisma.StringFilter<"User"> | string
+  username?: Prisma.StringFilter<"User"> | string
+  passwordHash?: Prisma.StringFilter<"User"> | string
+  avatar?: Prisma.BytesNullableFilter<"User"> | runtime.Bytes | null
+  avatarMime?: Prisma.StringNullableFilter<"User"> | string | null
+  avatarUpdatedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  termsAcceptedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
+  sessions?: Prisma.SessionListRelationFilter
+  resetTokens?: Prisma.PasswordResetTokenListRelationFilter
   wishlistItems?: Prisma.WishlistItemListRelationFilter
-  collection?: Prisma.LegoListRelationFilter
+  collectionItems?: Prisma.CollectionItemListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  password?: Prisma.SortOrder
+  username?: Prisma.SortOrder
+  passwordHash?: Prisma.SortOrder
+  avatar?: Prisma.SortOrderInput | Prisma.SortOrder
+  avatarMime?: Prisma.SortOrderInput | Prisma.SortOrder
+  avatarUpdatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  termsAcceptedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  sessions?: Prisma.SessionOrderByRelationAggregateInput
+  resetTokens?: Prisma.PasswordResetTokenOrderByRelationAggregateInput
   wishlistItems?: Prisma.WishlistItemOrderByRelationAggregateInput
-  collection?: Prisma.LegoOrderByRelationAggregateInput
+  collectionItems?: Prisma.CollectionItemOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
   id?: string
   email?: string
+  username?: string
   AND?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   OR?: Prisma.UserWhereInput[]
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
-  password?: Prisma.StringFilter<"User"> | string
+  passwordHash?: Prisma.StringFilter<"User"> | string
+  avatar?: Prisma.BytesNullableFilter<"User"> | runtime.Bytes | null
+  avatarMime?: Prisma.StringNullableFilter<"User"> | string | null
+  avatarUpdatedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
+  termsAcceptedAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
+  sessions?: Prisma.SessionListRelationFilter
+  resetTokens?: Prisma.PasswordResetTokenListRelationFilter
   wishlistItems?: Prisma.WishlistItemListRelationFilter
-  collection?: Prisma.LegoListRelationFilter
-}, "id" | "email">
+  collectionItems?: Prisma.CollectionItemListRelationFilter
+}, "id" | "email" | "username">
 
 export type UserOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  password?: Prisma.SortOrder
+  username?: Prisma.SortOrder
+  passwordHash?: Prisma.SortOrder
+  avatar?: Prisma.SortOrderInput | Prisma.SortOrder
+  avatarMime?: Prisma.SortOrderInput | Prisma.SortOrder
+  avatarUpdatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  termsAcceptedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
@@ -226,7 +287,12 @@ export type UserScalarWhereWithAggregatesInput = {
   NOT?: Prisma.UserScalarWhereWithAggregatesInput | Prisma.UserScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"User"> | string
   email?: Prisma.StringWithAggregatesFilter<"User"> | string
-  password?: Prisma.StringWithAggregatesFilter<"User"> | string
+  username?: Prisma.StringWithAggregatesFilter<"User"> | string
+  passwordHash?: Prisma.StringWithAggregatesFilter<"User"> | string
+  avatar?: Prisma.BytesNullableWithAggregatesFilter<"User"> | runtime.Bytes | null
+  avatarMime?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  avatarUpdatedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+  termsAcceptedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
 }
@@ -234,47 +300,80 @@ export type UserScalarWhereWithAggregatesInput = {
 export type UserCreateInput = {
   id?: string
   email: string
-  password: string
+  username: string
+  passwordHash: string
+  avatar?: runtime.Bytes | null
+  avatarMime?: string | null
+  avatarUpdatedAt?: Date | string | null
+  termsAcceptedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  resetTokens?: Prisma.PasswordResetTokenCreateNestedManyWithoutUserInput
   wishlistItems?: Prisma.WishlistItemCreateNestedManyWithoutUserInput
-  collection?: Prisma.LegoCreateNestedManyWithoutCollectorsInput
+  collectionItems?: Prisma.CollectionItemCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
   id?: string
   email: string
-  password: string
+  username: string
+  passwordHash: string
+  avatar?: runtime.Bytes | null
+  avatarMime?: string | null
+  avatarUpdatedAt?: Date | string | null
+  termsAcceptedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  resetTokens?: Prisma.PasswordResetTokenUncheckedCreateNestedManyWithoutUserInput
   wishlistItems?: Prisma.WishlistItemUncheckedCreateNestedManyWithoutUserInput
-  collection?: Prisma.LegoUncheckedCreateNestedManyWithoutCollectorsInput
+  collectionItems?: Prisma.CollectionItemUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  avatarMime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  termsAcceptedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  resetTokens?: Prisma.PasswordResetTokenUpdateManyWithoutUserNestedInput
   wishlistItems?: Prisma.WishlistItemUpdateManyWithoutUserNestedInput
-  collection?: Prisma.LegoUpdateManyWithoutCollectorsNestedInput
+  collectionItems?: Prisma.CollectionItemUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  avatarMime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  termsAcceptedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  resetTokens?: Prisma.PasswordResetTokenUncheckedUpdateManyWithoutUserNestedInput
   wishlistItems?: Prisma.WishlistItemUncheckedUpdateManyWithoutUserNestedInput
-  collection?: Prisma.LegoUncheckedUpdateManyWithoutCollectorsNestedInput
+  collectionItems?: Prisma.CollectionItemUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
   id?: string
   email: string
-  password: string
+  username: string
+  passwordHash: string
+  avatar?: runtime.Bytes | null
+  avatarMime?: string | null
+  avatarUpdatedAt?: Date | string | null
+  termsAcceptedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -282,7 +381,12 @@ export type UserCreateManyInput = {
 export type UserUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  avatarMime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  termsAcceptedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -290,7 +394,12 @@ export type UserUpdateManyMutationInput = {
 export type UserUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  avatarMime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  termsAcceptedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -298,7 +407,12 @@ export type UserUncheckedUpdateManyInput = {
 export type UserCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  password?: Prisma.SortOrder
+  username?: Prisma.SortOrder
+  passwordHash?: Prisma.SortOrder
+  avatar?: Prisma.SortOrder
+  avatarMime?: Prisma.SortOrder
+  avatarUpdatedAt?: Prisma.SortOrder
+  termsAcceptedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -306,7 +420,12 @@ export type UserCountOrderByAggregateInput = {
 export type UserMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  password?: Prisma.SortOrder
+  username?: Prisma.SortOrder
+  passwordHash?: Prisma.SortOrder
+  avatar?: Prisma.SortOrder
+  avatarMime?: Prisma.SortOrder
+  avatarUpdatedAt?: Prisma.SortOrder
+  termsAcceptedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -314,19 +433,14 @@ export type UserMaxOrderByAggregateInput = {
 export type UserMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  password?: Prisma.SortOrder
+  username?: Prisma.SortOrder
+  passwordHash?: Prisma.SortOrder
+  avatar?: Prisma.SortOrder
+  avatarMime?: Prisma.SortOrder
+  avatarUpdatedAt?: Prisma.SortOrder
+  termsAcceptedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-}
-
-export type UserListRelationFilter = {
-  every?: Prisma.UserWhereInput
-  some?: Prisma.UserWhereInput
-  none?: Prisma.UserWhereInput
-}
-
-export type UserOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder
 }
 
 export type UserScalarRelationFilter = {
@@ -338,46 +452,62 @@ export type StringFieldUpdateOperationsInput = {
   set?: string
 }
 
+export type NullableBytesFieldUpdateOperationsInput = {
+  set?: runtime.Bytes | null
+}
+
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
+}
+
+export type NullableDateTimeFieldUpdateOperationsInput = {
+  set?: Date | string | null
+}
+
 export type DateTimeFieldUpdateOperationsInput = {
   set?: Date | string
 }
 
-export type UserCreateNestedManyWithoutCollectionInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutCollectionInput, Prisma.UserUncheckedCreateWithoutCollectionInput> | Prisma.UserCreateWithoutCollectionInput[] | Prisma.UserUncheckedCreateWithoutCollectionInput[]
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCollectionInput | Prisma.UserCreateOrConnectWithoutCollectionInput[]
-  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+export type UserCreateNestedOneWithoutSessionsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSessionsInput, Prisma.UserUncheckedCreateWithoutSessionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSessionsInput
+  connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUncheckedCreateNestedManyWithoutCollectionInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutCollectionInput, Prisma.UserUncheckedCreateWithoutCollectionInput> | Prisma.UserCreateWithoutCollectionInput[] | Prisma.UserUncheckedCreateWithoutCollectionInput[]
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCollectionInput | Prisma.UserCreateOrConnectWithoutCollectionInput[]
-  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+export type UserUpdateOneRequiredWithoutSessionsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSessionsInput, Prisma.UserUncheckedCreateWithoutSessionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSessionsInput
+  upsert?: Prisma.UserUpsertWithoutSessionsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSessionsInput, Prisma.UserUpdateWithoutSessionsInput>, Prisma.UserUncheckedUpdateWithoutSessionsInput>
 }
 
-export type UserUpdateManyWithoutCollectionNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutCollectionInput, Prisma.UserUncheckedCreateWithoutCollectionInput> | Prisma.UserCreateWithoutCollectionInput[] | Prisma.UserUncheckedCreateWithoutCollectionInput[]
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCollectionInput | Prisma.UserCreateOrConnectWithoutCollectionInput[]
-  upsert?: Prisma.UserUpsertWithWhereUniqueWithoutCollectionInput | Prisma.UserUpsertWithWhereUniqueWithoutCollectionInput[]
-  set?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
-  disconnect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
-  delete?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
-  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
-  update?: Prisma.UserUpdateWithWhereUniqueWithoutCollectionInput | Prisma.UserUpdateWithWhereUniqueWithoutCollectionInput[]
-  updateMany?: Prisma.UserUpdateManyWithWhereWithoutCollectionInput | Prisma.UserUpdateManyWithWhereWithoutCollectionInput[]
-  deleteMany?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
+export type UserCreateNestedOneWithoutResetTokensInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutResetTokensInput, Prisma.UserUncheckedCreateWithoutResetTokensInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutResetTokensInput
+  connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUncheckedUpdateManyWithoutCollectionNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutCollectionInput, Prisma.UserUncheckedCreateWithoutCollectionInput> | Prisma.UserCreateWithoutCollectionInput[] | Prisma.UserUncheckedCreateWithoutCollectionInput[]
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCollectionInput | Prisma.UserCreateOrConnectWithoutCollectionInput[]
-  upsert?: Prisma.UserUpsertWithWhereUniqueWithoutCollectionInput | Prisma.UserUpsertWithWhereUniqueWithoutCollectionInput[]
-  set?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
-  disconnect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
-  delete?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
-  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
-  update?: Prisma.UserUpdateWithWhereUniqueWithoutCollectionInput | Prisma.UserUpdateWithWhereUniqueWithoutCollectionInput[]
-  updateMany?: Prisma.UserUpdateManyWithWhereWithoutCollectionInput | Prisma.UserUpdateManyWithWhereWithoutCollectionInput[]
-  deleteMany?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
+export type UserUpdateOneRequiredWithoutResetTokensNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutResetTokensInput, Prisma.UserUncheckedCreateWithoutResetTokensInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutResetTokensInput
+  upsert?: Prisma.UserUpsertWithoutResetTokensInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutResetTokensInput, Prisma.UserUpdateWithoutResetTokensInput>, Prisma.UserUncheckedUpdateWithoutResetTokensInput>
+}
+
+export type UserCreateNestedOneWithoutCollectionItemsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCollectionItemsInput, Prisma.UserUncheckedCreateWithoutCollectionItemsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCollectionItemsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutCollectionItemsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCollectionItemsInput, Prisma.UserUncheckedCreateWithoutCollectionItemsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCollectionItemsInput
+  upsert?: Prisma.UserUpsertWithoutCollectionItemsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCollectionItemsInput, Prisma.UserUpdateWithoutCollectionItemsInput>, Prisma.UserUncheckedUpdateWithoutCollectionItemsInput>
 }
 
 export type UserCreateNestedOneWithoutWishlistItemsInput = {
@@ -394,72 +524,276 @@ export type UserUpdateOneRequiredWithoutWishlistItemsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutWishlistItemsInput, Prisma.UserUpdateWithoutWishlistItemsInput>, Prisma.UserUncheckedUpdateWithoutWishlistItemsInput>
 }
 
-export type UserCreateWithoutCollectionInput = {
+export type UserCreateWithoutSessionsInput = {
   id?: string
   email: string
-  password: string
+  username: string
+  passwordHash: string
+  avatar?: runtime.Bytes | null
+  avatarMime?: string | null
+  avatarUpdatedAt?: Date | string | null
+  termsAcceptedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  resetTokens?: Prisma.PasswordResetTokenCreateNestedManyWithoutUserInput
+  wishlistItems?: Prisma.WishlistItemCreateNestedManyWithoutUserInput
+  collectionItems?: Prisma.CollectionItemCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutSessionsInput = {
+  id?: string
+  email: string
+  username: string
+  passwordHash: string
+  avatar?: runtime.Bytes | null
+  avatarMime?: string | null
+  avatarUpdatedAt?: Date | string | null
+  termsAcceptedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  resetTokens?: Prisma.PasswordResetTokenUncheckedCreateNestedManyWithoutUserInput
+  wishlistItems?: Prisma.WishlistItemUncheckedCreateNestedManyWithoutUserInput
+  collectionItems?: Prisma.CollectionItemUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutSessionsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutSessionsInput, Prisma.UserUncheckedCreateWithoutSessionsInput>
+}
+
+export type UserUpsertWithoutSessionsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutSessionsInput, Prisma.UserUncheckedUpdateWithoutSessionsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutSessionsInput, Prisma.UserUncheckedCreateWithoutSessionsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutSessionsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutSessionsInput, Prisma.UserUncheckedUpdateWithoutSessionsInput>
+}
+
+export type UserUpdateWithoutSessionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  avatarMime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  termsAcceptedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  resetTokens?: Prisma.PasswordResetTokenUpdateManyWithoutUserNestedInput
+  wishlistItems?: Prisma.WishlistItemUpdateManyWithoutUserNestedInput
+  collectionItems?: Prisma.CollectionItemUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutSessionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  avatarMime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  termsAcceptedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  resetTokens?: Prisma.PasswordResetTokenUncheckedUpdateManyWithoutUserNestedInput
+  wishlistItems?: Prisma.WishlistItemUncheckedUpdateManyWithoutUserNestedInput
+  collectionItems?: Prisma.CollectionItemUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutResetTokensInput = {
+  id?: string
+  email: string
+  username: string
+  passwordHash: string
+  avatar?: runtime.Bytes | null
+  avatarMime?: string | null
+  avatarUpdatedAt?: Date | string | null
+  termsAcceptedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  wishlistItems?: Prisma.WishlistItemCreateNestedManyWithoutUserInput
+  collectionItems?: Prisma.CollectionItemCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutResetTokensInput = {
+  id?: string
+  email: string
+  username: string
+  passwordHash: string
+  avatar?: runtime.Bytes | null
+  avatarMime?: string | null
+  avatarUpdatedAt?: Date | string | null
+  termsAcceptedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  wishlistItems?: Prisma.WishlistItemUncheckedCreateNestedManyWithoutUserInput
+  collectionItems?: Prisma.CollectionItemUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutResetTokensInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutResetTokensInput, Prisma.UserUncheckedCreateWithoutResetTokensInput>
+}
+
+export type UserUpsertWithoutResetTokensInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutResetTokensInput, Prisma.UserUncheckedUpdateWithoutResetTokensInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutResetTokensInput, Prisma.UserUncheckedCreateWithoutResetTokensInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutResetTokensInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutResetTokensInput, Prisma.UserUncheckedUpdateWithoutResetTokensInput>
+}
+
+export type UserUpdateWithoutResetTokensInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  avatarMime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  termsAcceptedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  wishlistItems?: Prisma.WishlistItemUpdateManyWithoutUserNestedInput
+  collectionItems?: Prisma.CollectionItemUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutResetTokensInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  avatarMime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  termsAcceptedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  wishlistItems?: Prisma.WishlistItemUncheckedUpdateManyWithoutUserNestedInput
+  collectionItems?: Prisma.CollectionItemUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutCollectionItemsInput = {
+  id?: string
+  email: string
+  username: string
+  passwordHash: string
+  avatar?: runtime.Bytes | null
+  avatarMime?: string | null
+  avatarUpdatedAt?: Date | string | null
+  termsAcceptedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  resetTokens?: Prisma.PasswordResetTokenCreateNestedManyWithoutUserInput
   wishlistItems?: Prisma.WishlistItemCreateNestedManyWithoutUserInput
 }
 
-export type UserUncheckedCreateWithoutCollectionInput = {
+export type UserUncheckedCreateWithoutCollectionItemsInput = {
   id?: string
   email: string
-  password: string
+  username: string
+  passwordHash: string
+  avatar?: runtime.Bytes | null
+  avatarMime?: string | null
+  avatarUpdatedAt?: Date | string | null
+  termsAcceptedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  resetTokens?: Prisma.PasswordResetTokenUncheckedCreateNestedManyWithoutUserInput
   wishlistItems?: Prisma.WishlistItemUncheckedCreateNestedManyWithoutUserInput
 }
 
-export type UserCreateOrConnectWithoutCollectionInput = {
+export type UserCreateOrConnectWithoutCollectionItemsInput = {
   where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutCollectionInput, Prisma.UserUncheckedCreateWithoutCollectionInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCollectionItemsInput, Prisma.UserUncheckedCreateWithoutCollectionItemsInput>
 }
 
-export type UserUpsertWithWhereUniqueWithoutCollectionInput = {
-  where: Prisma.UserWhereUniqueInput
-  update: Prisma.XOR<Prisma.UserUpdateWithoutCollectionInput, Prisma.UserUncheckedUpdateWithoutCollectionInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutCollectionInput, Prisma.UserUncheckedCreateWithoutCollectionInput>
+export type UserUpsertWithoutCollectionItemsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCollectionItemsInput, Prisma.UserUncheckedUpdateWithoutCollectionItemsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCollectionItemsInput, Prisma.UserUncheckedCreateWithoutCollectionItemsInput>
+  where?: Prisma.UserWhereInput
 }
 
-export type UserUpdateWithWhereUniqueWithoutCollectionInput = {
-  where: Prisma.UserWhereUniqueInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutCollectionInput, Prisma.UserUncheckedUpdateWithoutCollectionInput>
+export type UserUpdateToOneWithWhereWithoutCollectionItemsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutCollectionItemsInput, Prisma.UserUncheckedUpdateWithoutCollectionItemsInput>
 }
 
-export type UserUpdateManyWithWhereWithoutCollectionInput = {
-  where: Prisma.UserScalarWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateManyMutationInput, Prisma.UserUncheckedUpdateManyWithoutCollectionInput>
+export type UserUpdateWithoutCollectionItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  avatarMime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  termsAcceptedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  resetTokens?: Prisma.PasswordResetTokenUpdateManyWithoutUserNestedInput
+  wishlistItems?: Prisma.WishlistItemUpdateManyWithoutUserNestedInput
 }
 
-export type UserScalarWhereInput = {
-  AND?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
-  OR?: Prisma.UserScalarWhereInput[]
-  NOT?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
-  id?: Prisma.StringFilter<"User"> | string
-  email?: Prisma.StringFilter<"User"> | string
-  password?: Prisma.StringFilter<"User"> | string
-  createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
+export type UserUncheckedUpdateWithoutCollectionItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  avatarMime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  termsAcceptedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  resetTokens?: Prisma.PasswordResetTokenUncheckedUpdateManyWithoutUserNestedInput
+  wishlistItems?: Prisma.WishlistItemUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutWishlistItemsInput = {
   id?: string
   email: string
-  password: string
+  username: string
+  passwordHash: string
+  avatar?: runtime.Bytes | null
+  avatarMime?: string | null
+  avatarUpdatedAt?: Date | string | null
+  termsAcceptedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  collection?: Prisma.LegoCreateNestedManyWithoutCollectorsInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  resetTokens?: Prisma.PasswordResetTokenCreateNestedManyWithoutUserInput
+  collectionItems?: Prisma.CollectionItemCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutWishlistItemsInput = {
   id?: string
   email: string
-  password: string
+  username: string
+  passwordHash: string
+  avatar?: runtime.Bytes | null
+  avatarMime?: string | null
+  avatarUpdatedAt?: Date | string | null
+  termsAcceptedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  collection?: Prisma.LegoUncheckedCreateNestedManyWithoutCollectorsInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  resetTokens?: Prisma.PasswordResetTokenUncheckedCreateNestedManyWithoutUserInput
+  collectionItems?: Prisma.CollectionItemUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutWishlistItemsInput = {
@@ -481,45 +815,33 @@ export type UserUpdateToOneWithWhereWithoutWishlistItemsInput = {
 export type UserUpdateWithoutWishlistItemsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  avatarMime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  termsAcceptedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  collection?: Prisma.LegoUpdateManyWithoutCollectorsNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  resetTokens?: Prisma.PasswordResetTokenUpdateManyWithoutUserNestedInput
+  collectionItems?: Prisma.CollectionItemUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutWishlistItemsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  avatar?: Prisma.NullableBytesFieldUpdateOperationsInput | runtime.Bytes | null
+  avatarMime?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avatarUpdatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  termsAcceptedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  collection?: Prisma.LegoUncheckedUpdateManyWithoutCollectorsNestedInput
-}
-
-export type UserUpdateWithoutCollectionInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  wishlistItems?: Prisma.WishlistItemUpdateManyWithoutUserNestedInput
-}
-
-export type UserUncheckedUpdateWithoutCollectionInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  wishlistItems?: Prisma.WishlistItemUncheckedUpdateManyWithoutUserNestedInput
-}
-
-export type UserUncheckedUpdateManyWithoutCollectionInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  resetTokens?: Prisma.PasswordResetTokenUncheckedUpdateManyWithoutUserNestedInput
+  collectionItems?: Prisma.CollectionItemUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -528,13 +850,17 @@ export type UserUncheckedUpdateManyWithoutCollectionInput = {
  */
 
 export type UserCountOutputType = {
+  sessions: number
+  resetTokens: number
   wishlistItems: number
-  collection: number
+  collectionItems: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  sessions?: boolean | UserCountOutputTypeCountSessionsArgs
+  resetTokens?: boolean | UserCountOutputTypeCountResetTokensArgs
   wishlistItems?: boolean | UserCountOutputTypeCountWishlistItemsArgs
-  collection?: boolean | UserCountOutputTypeCountCollectionArgs
+  collectionItems?: boolean | UserCountOutputTypeCountCollectionItemsArgs
 }
 
 /**
@@ -550,6 +876,20 @@ export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
 /**
  * UserCountOutputType without action
  */
+export type UserCountOutputTypeCountSessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SessionWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountResetTokensArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PasswordResetTokenWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
 export type UserCountOutputTypeCountWishlistItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.WishlistItemWhereInput
 }
@@ -557,26 +897,38 @@ export type UserCountOutputTypeCountWishlistItemsArgs<ExtArgs extends runtime.Ty
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountCollectionArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.LegoWhereInput
+export type UserCountOutputTypeCountCollectionItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CollectionItemWhereInput
 }
 
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   email?: boolean
-  password?: boolean
+  username?: boolean
+  passwordHash?: boolean
+  avatar?: boolean
+  avatarMime?: boolean
+  avatarUpdatedAt?: boolean
+  termsAcceptedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
+  resetTokens?: boolean | Prisma.User$resetTokensArgs<ExtArgs>
   wishlistItems?: boolean | Prisma.User$wishlistItemsArgs<ExtArgs>
-  collection?: boolean | Prisma.User$collectionArgs<ExtArgs>
+  collectionItems?: boolean | Prisma.User$collectionItemsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   email?: boolean
-  password?: boolean
+  username?: boolean
+  passwordHash?: boolean
+  avatar?: boolean
+  avatarMime?: boolean
+  avatarUpdatedAt?: boolean
+  termsAcceptedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["user"]>
@@ -584,7 +936,12 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
 export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   email?: boolean
-  password?: boolean
+  username?: boolean
+  passwordHash?: boolean
+  avatar?: boolean
+  avatarMime?: boolean
+  avatarUpdatedAt?: boolean
+  termsAcceptedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["user"]>
@@ -592,15 +949,22 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
 export type UserSelectScalar = {
   id?: boolean
   email?: boolean
-  password?: boolean
+  username?: boolean
+  passwordHash?: boolean
+  avatar?: boolean
+  avatarMime?: boolean
+  avatarUpdatedAt?: boolean
+  termsAcceptedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "password" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "username" | "passwordHash" | "avatar" | "avatarMime" | "avatarUpdatedAt" | "termsAcceptedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
+  resetTokens?: boolean | Prisma.User$resetTokensArgs<ExtArgs>
   wishlistItems?: boolean | Prisma.User$wishlistItemsArgs<ExtArgs>
-  collection?: boolean | Prisma.User$collectionArgs<ExtArgs>
+  collectionItems?: boolean | Prisma.User$collectionItemsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -609,13 +973,23 @@ export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
   objects: {
+    sessions: Prisma.$SessionPayload<ExtArgs>[]
+    resetTokens: Prisma.$PasswordResetTokenPayload<ExtArgs>[]
     wishlistItems: Prisma.$WishlistItemPayload<ExtArgs>[]
-    collection: Prisma.$LegoPayload<ExtArgs>[]
+    collectionItems: Prisma.$CollectionItemPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     email: string
-    password: string
+    /**
+     * Unicité insensible à la casse garantie aussi par l'index SQL "User_username_lower_key"
+     */
+    username: string
+    passwordHash: string
+    avatar: runtime.Bytes | null
+    avatarMime: string | null
+    avatarUpdatedAt: Date | null
+    termsAcceptedAt: Date | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["user"]>
@@ -1012,8 +1386,10 @@ readonly fields: UserFieldRefs;
  */
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  sessions<T extends Prisma.User$sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  resetTokens<T extends Prisma.User$resetTokensArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$resetTokensArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PasswordResetTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   wishlistItems<T extends Prisma.User$wishlistItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$wishlistItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WishlistItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  collection<T extends Prisma.User$collectionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$collectionArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LegoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  collectionItems<T extends Prisma.User$collectionItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$collectionItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CollectionItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1045,7 +1421,12 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
 export interface UserFieldRefs {
   readonly id: Prisma.FieldRef<"User", 'String'>
   readonly email: Prisma.FieldRef<"User", 'String'>
-  readonly password: Prisma.FieldRef<"User", 'String'>
+  readonly username: Prisma.FieldRef<"User", 'String'>
+  readonly passwordHash: Prisma.FieldRef<"User", 'String'>
+  readonly avatar: Prisma.FieldRef<"User", 'Bytes'>
+  readonly avatarMime: Prisma.FieldRef<"User", 'String'>
+  readonly avatarUpdatedAt: Prisma.FieldRef<"User", 'DateTime'>
+  readonly termsAcceptedAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"User", 'DateTime'>
 }
@@ -1436,6 +1817,54 @@ export type UserDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
+ * User.sessions
+ */
+export type User$sessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Session
+   */
+  select?: Prisma.SessionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Session
+   */
+  omit?: Prisma.SessionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SessionInclude<ExtArgs> | null
+  where?: Prisma.SessionWhereInput
+  orderBy?: Prisma.SessionOrderByWithRelationInput | Prisma.SessionOrderByWithRelationInput[]
+  cursor?: Prisma.SessionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SessionScalarFieldEnum | Prisma.SessionScalarFieldEnum[]
+}
+
+/**
+ * User.resetTokens
+ */
+export type User$resetTokensArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PasswordResetToken
+   */
+  select?: Prisma.PasswordResetTokenSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PasswordResetToken
+   */
+  omit?: Prisma.PasswordResetTokenOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PasswordResetTokenInclude<ExtArgs> | null
+  where?: Prisma.PasswordResetTokenWhereInput
+  orderBy?: Prisma.PasswordResetTokenOrderByWithRelationInput | Prisma.PasswordResetTokenOrderByWithRelationInput[]
+  cursor?: Prisma.PasswordResetTokenWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PasswordResetTokenScalarFieldEnum | Prisma.PasswordResetTokenScalarFieldEnum[]
+}
+
+/**
  * User.wishlistItems
  */
 export type User$wishlistItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1460,27 +1889,27 @@ export type User$wishlistItemsArgs<ExtArgs extends runtime.Types.Extensions.Inte
 }
 
 /**
- * User.collection
+ * User.collectionItems
  */
-export type User$collectionArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$collectionItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Lego
+   * Select specific fields to fetch from the CollectionItem
    */
-  select?: Prisma.LegoSelect<ExtArgs> | null
+  select?: Prisma.CollectionItemSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Lego
+   * Omit specific fields from the CollectionItem
    */
-  omit?: Prisma.LegoOmit<ExtArgs> | null
+  omit?: Prisma.CollectionItemOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.LegoInclude<ExtArgs> | null
-  where?: Prisma.LegoWhereInput
-  orderBy?: Prisma.LegoOrderByWithRelationInput | Prisma.LegoOrderByWithRelationInput[]
-  cursor?: Prisma.LegoWhereUniqueInput
+  include?: Prisma.CollectionItemInclude<ExtArgs> | null
+  where?: Prisma.CollectionItemWhereInput
+  orderBy?: Prisma.CollectionItemOrderByWithRelationInput | Prisma.CollectionItemOrderByWithRelationInput[]
+  cursor?: Prisma.CollectionItemWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.LegoScalarFieldEnum | Prisma.LegoScalarFieldEnum[]
+  distinct?: Prisma.CollectionItemScalarFieldEnum | Prisma.CollectionItemScalarFieldEnum[]
 }
 
 /**

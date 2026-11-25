@@ -1,3 +1,2 @@
 @import 'tailwindcss';
-@plugin '@tailwindcss/forms';
-@plugin '@tailwindcss/typography';
+@import '../lib/styles/app.css';
